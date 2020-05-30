@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'id' => 1,
             'name' => 'Admin Admin',
             'username' => 'admin',
-            'email' => 'admin@black.com',
+            'email' => 'admin@web-project.by',
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
             'phone' => '2223344',
@@ -24,20 +24,6 @@ class UsersTableSeeder extends Seeder
             'admin' => true,
             'created_at' => now(),
             'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-            'id' => 2,
-            'name' => 'Filin Fox',
-            'username' => 'filin',
-            'email' => 'filin@black.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'phone' => '111222',
-            'city' => 'london',
-            'admin' => false,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ]);       
     }
 }
