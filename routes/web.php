@@ -23,5 +23,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/posts', 'PostController');
-Route::resource('/admin/categories', 'CategoryController');
-Route::resource('/admin/tags', 'TagController');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', 'DashboardController@index')->name('admin');
+    Route::resource('/categories', 'CategoriesController');
+    Route::resource('/tags', 'TagsController');
+});
+
