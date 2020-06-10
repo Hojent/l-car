@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 
 mix.autoload({
-    jquery: ['$', 'global.jQuery',"jQuery","global.$","jquery","global.jquery"]
+    jquery: ["$", "global.jQuery","jQuery","global.$","jquery","global.jquery"]
 });
 
 /*
@@ -33,10 +33,8 @@ mix.styles([
     //'resources/assets/admin/assets/libs/quill/dist/quill.snow.css',
 ], 'public/css/admin.css');
 
-
-
 mix.js([
-    'resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',
+    //'resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',
     'resources/assets/admin/dist/js/jquery.ui.touch-punch-improved.js',
     'resources/assets/admin/dist/js/jquery-ui.min.js',
     //'resources/assets/admin/assets/libs/popper.js/dist/umd/popper.min.js',
@@ -82,3 +80,6 @@ mix.copyDirectory ([
 mix.copyDirectory ([
     'resources/assets/admin/dist/css/icons',
 ], 'public/css/icons');
+mix.copy ([
+    'resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',
+], 'public/js/jquery.min.js');

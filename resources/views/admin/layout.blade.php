@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- Favicon icon -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../Jquery-Validate/jquery.validate.min.js"></script>
+    <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="{{'assets/images/favicon.png'}}">
   <title>Matrix Admin panel - б/у запчасти для автомобилей</title>
   <!-- Custom CSS -->
@@ -19,6 +21,7 @@
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
   <![endif]-->
 </head>
 

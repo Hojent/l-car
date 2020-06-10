@@ -15,7 +15,7 @@
         </div>
 
         <div>
-            <button class="btn btn-default">Назад</button>
+            <a class="btn btn-info" href="{{ route('categories.index') }}">Назад</a>
             <button class="btn btn-success pull-right">Изменить</button>
         </div>
 
