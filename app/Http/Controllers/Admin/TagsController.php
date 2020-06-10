@@ -15,7 +15,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tags.index', ['tags' => $tags]);
     }
 
     /**
@@ -36,19 +37,13 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+        Tag::create($request->all());
+        return redirect(route('tags.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +53,9 @@ class TagsController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('admin.tags.edit', [
+            'tag' => $tag,
+        ]);
     }
 
     /**
@@ -70,7 +67,11 @@ class TagsController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $this->validate($request, [
+            'title'	=>	'required' //обязательно
+        ]);
+        $tag->update($request->all());
+        return redirect(route('tags.index'));
     }
 
     /**
@@ -81,6 +82,7 @@ class TagsController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
-    }
+        $tag->delete();
+        return redirect()->route('tags.index');
+            }
 }
