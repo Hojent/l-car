@@ -22,11 +22,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/posts', 'PostController');
+//Route::get('/blog', 'BlogController@index')->name('blog');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin');
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
+    //Route::resource('/posts', 'PostsController');
 });
 
