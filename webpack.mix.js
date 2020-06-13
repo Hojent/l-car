@@ -35,6 +35,8 @@ mix.styles([
 
 mix.js([
     //'resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',
+    //'resources/assets/admin/assets/libs/select2/dist/js/select2.full.min.js',
+    //'resources/assets/admin/assets/libs/select2/dist/js/select2.min.js',
     'resources/assets/admin/dist/js/jquery.ui.touch-punch-improved.js',
     'resources/assets/admin/dist/js/jquery-ui.min.js',
     //'resources/assets/admin/assets/libs/popper.js/dist/umd/popper.min.js',
@@ -44,8 +46,8 @@ mix.js([
     //'resources/assets/admin/dist/js/waves.js',
     'resources/assets/admin/dist/js/sidebarmenu.js',
     'resources/assets/admin/dist/js/custom.min.js',
-    //'resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js',
-    //'resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js',
+    'resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js',
+    'resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js',
     //'resources/assets/admin/assets/extra-libs/DataTables/datatables.js',
     //'resources/assets/admin/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js',
     //'resources/assets/admin/assets/libs/magnific-popup/meg.init.js',
@@ -54,8 +56,6 @@ mix.js([
     //'resources/assets/admin/assets/libs/jquery-validation/dist/jquery.validate.min.js',
     //'resources/assets/admin/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js',
     //'resources/assets/admin/dist/js/pages/mask/mask.init.js',
-    //'resources/assets/admin/assets/libs/select2/dist/js/select2.full.min.js',
-    //'resources/assets/admin/assets/libs/select2/dist/js/select2.min.js',
     //'resources/assets/admin/assets/libs/jquery-asColor/dist/jquery-asColor.js',
     //'resources/assets/admin/assets/libs/jquery-asGradient/dist/jquery-asGradient.js',
     //'resources/assets/admin/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.js',
@@ -80,6 +80,11 @@ mix.copyDirectory ([
 mix.copyDirectory ([
     'resources/assets/admin/dist/css/icons',
 ], 'public/css/icons');
+mix.copy (['resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',],
+    'public/js/jquery.min.js');
 mix.copy ([
-    'resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',
-], 'public/js/jquery.min.js');
+    'resources/assets/admin/assets/libs/select2/dist/js/select2.full.min.js',
+    'resources/assets/admin/assets/libs/select2/dist/js/select2.min.js',
+    ],
+    'public/js');
+

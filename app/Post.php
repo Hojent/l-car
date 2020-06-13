@@ -17,11 +17,11 @@ class Post extends Model
     protected $fillable = ['title', 'content'];
 
     public function category (){
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function author () {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -76,7 +76,7 @@ class Post extends Model
     {
         if($this->image != null)
         {
-            Storage::delete('uploads/' . $this->image);
+            Storage::delete('/uploads/' . $this->image);
         }
     }
 
@@ -85,7 +85,7 @@ class Post extends Model
         if($image == null) { return; }
         Storage::delete('uploads/' . $this->image);
         $this->removeImage();
-        $filename = $this->author()->get('username'). '.' . $image->extension();
+        $filename = 'pic'.$this->id.'.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->image = $filename;
         $this->save();
@@ -95,11 +95,17 @@ class Post extends Model
     {
         if($this->image == null)
         {
-            return '/img/no-image.png';
+            return '/images/no-image.jpg';
         }
 
         return '/uploads/' . $this->image;
 
+    }
+
+    public function getCategory(){
+        return ($this->category != null)
+            ?   $this->category->title
+            :   'Нет категории';
     }
 
     public function setCategory($id) {
@@ -111,6 +117,13 @@ class Post extends Model
     public function setTags ($ids) {
         if($ids == null) {return;}
         $this->tags()->sync($ids);
+    }
+
+    public function getTags()
+    {
+        return (!$this->tags->isEmpty())
+            ?   implode(', ', $this->tags->pluck('title')->all())
+            : ' - ';
     }
 
     protected function setDraft()

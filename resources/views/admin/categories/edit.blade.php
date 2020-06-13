@@ -2,8 +2,8 @@
 @section('title')
     @lang('headers.edit_category')
 @endsection
+{{-- admin.errors included in admin.layout --}}
 @section('content')
-
     {{Form::open(['route'=>['categories.update',$category->id], 'method'=>'put'])}}
     <div class="card-body">
 

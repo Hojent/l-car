@@ -13631,6 +13631,80 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(function () {
+  //multicheckbox check for static table no padding
+  $('#mainCheckbox').multicheck($('.listCheckbox')); //multicheckbox check for static table with padding
+
+  $('#mainCheckbox1').multicheck($('.listCheckbox1'));
+  /*var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+  })();*/
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
+/***/ "./resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(jQuery) {(function ($) {
+  $.fn.multicheck = function ($checkboxes) {
+    $checkboxes = $checkboxes.filter('input[type=checkbox]');
+
+    if ($checkboxes.length > 0) {
+      this.each(function () {
+        var $this = $(this);
+        $this.click(function () {
+          $checkboxes.prop('checked', this.checked);
+          $this.trigger(this.checked ? 'multicheck.allchecked' : 'multicheck.nonechecked');
+        });
+        $checkboxes.on('click change', function () {
+          var checkedItems = $checkboxes.filter(':checked').length;
+
+          if (checkedItems == 0) {
+            $this[0].indeterminate = false;
+            $this[0].checked = false;
+            $this.trigger('multicheck.nonechecked');
+          } else if (checkedItems == $checkboxes.length) {
+            $this[0].indeterminate = false;
+            $this[0].checked = true;
+            $this.trigger('multicheck.allchecked');
+          } else {
+            $this[0].checked = false;
+            $this[0].indeterminate = true;
+            $this.trigger('multicheck.somechecked');
+          }
+        });
+      });
+    }
+
+    return this;
+  };
+})(jQuery);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
 /***/ "./resources/assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js":
 /*!*******************************************************************************!*\
   !*** ./resources/assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js ***!
@@ -25002,9 +25076,9 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/admin/dist/js/jquery.ui.touch-punch-improved.js ./resources/assets/admin/dist/js/jquery-ui.min.js ./resources/assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js ./resources/assets/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js ./resources/assets/admin/dist/js/sidebarmenu.js ./resources/assets/admin/dist/js/custom.min.js ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/admin/dist/js/jquery.ui.touch-punch-improved.js ./resources/assets/admin/dist/js/jquery-ui.min.js ./resources/assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js ./resources/assets/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js ./resources/assets/admin/dist/js/sidebarmenu.js ./resources/assets/admin/dist/js/custom.min.js ./resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js ./resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25013,7 +25087,9 @@ __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\dist\js\jquery-ui
 __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\assets\libs\bootstrap\dist\js\bootstrap.min.js */"./resources/assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js");
 __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\assets\libs\perfect-scrollbar\dist\perfect-scrollbar.jquery.min.js */"./resources/assets/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js");
 __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\dist\js\sidebarmenu.js */"./resources/assets/admin/dist/js/sidebarmenu.js");
-module.exports = __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\dist\js\custom.min.js */"./resources/assets/admin/dist/js/custom.min.js");
+__webpack_require__(/*! w:\domains\lar7\resources\assets\admin\dist\js\custom.min.js */"./resources/assets/admin/dist/js/custom.min.js");
+__webpack_require__(/*! w:\domains\lar7\resources\assets\admin\assets\extra-libs\multicheck\datatable-checkbox-init.js */"./resources/assets/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js");
+module.exports = __webpack_require__(/*! w:\domains\lar7\resources\assets\admin\assets\extra-libs\multicheck\jquery.multicheck.js */"./resources/assets/admin/assets/extra-libs/multicheck/jquery.multicheck.js");
 
 
 /***/ })

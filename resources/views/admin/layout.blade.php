@@ -9,13 +9,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="../Jquery-Validate/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="{{'/js/jquery.validate.min.js'}}"></script>
+  <script type="text/javascript" src="{{'/js/datatables.min.js'}}"></script>
     <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="{{'assets/images/favicon.png'}}">
   <title>Matrix Admin panel - б/у запчасти для автомобилей</title>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800">
   <link href="{{'/css/admin.css'}}" rel="stylesheet">
+  <link href="{{'/css/datatables.min.css'}}" rel="stylesheet">
+  <link href="{{'/css/select2.min.css'}}" rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -236,10 +239,9 @@
 <!-- ============================================================== -->
 
 <script src="{{'/js/admin.js'}}"></script>
+<script src="{{'/js/select2.full.min.js'}}"></script>
+<script src="{{'/js/select2.min.js'}}"></script>
 
-{{--<script src="assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
-<script src="dist/js/jquery-ui.min.js"></script>--}}
 <!-- Bootstrap tether Core JavaScript -->
 
 {{--<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>--}}
@@ -253,7 +255,7 @@
 {{--<script src="dist/js/custom.min.js"></script>--}}
 <!-- this page js -->
 
-
+@yield('script')
 
 </body>
 

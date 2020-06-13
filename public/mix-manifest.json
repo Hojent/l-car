@@ -1,5 +1,7 @@
 {
     "/js/admin.js": "/js/admin.js",
     "/css/admin.css": "/css/admin.css",
-    "/js/jquery.min.js": "/js/jquery.min.js"
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/select2.full.min.js": "/js/select2.full.min.js",
+    "/js/select2.min.js": "/js/select2.min.js"
 }

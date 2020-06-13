@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Post;
+use App\{
+    Http\Controllers\Controller, Post, Tag, Category
+};
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File;
 
 class PostsController extends Controller
 {
@@ -15,7 +17,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -25,7 +28,12 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('title','id');
+        $tags = Tag::pluck('title','id');
+        return view('admin.posts.create', [
+            'tags' => $tags,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -36,21 +44,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+           'title' => 'required',
+           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+        $post = Post::add($request->all());
+        $post->uploadImage($request->file('image'));
+        $post->setCategory($request->get('category_id'));
+        $post->setTags($request->get('tags'));
+        $post->toggleStatus($request->get('status'));
+        $post->toggleFeatured($request->get('featured'));
+
+        return redirect(route('posts.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
+     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Post  $post
@@ -58,7 +67,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view ('admin.posts.edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -70,7 +81,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->validate($request, [
+            'title'	=>	'required' //обязательно
+        ]);
+        $post->update($request->all());
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -81,6 +96,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->remove();
+        return redirect()->route('posts.index');
     }
 }
