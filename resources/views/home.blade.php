@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <h1>Home blade</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -13,7 +14,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
                 </div>
             </div>

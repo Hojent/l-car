@@ -75,16 +75,70 @@ mix.js([
 //], 'public/css/icons');
 
 mix.copyDirectory ([
-    'resources/assets/admin/assets/images',
-], 'public/assets/images');
+    'resources/assets/front/images',
+], 'public/images');
 mix.copyDirectory ([
-    'resources/assets/admin/dist/css/icons',
-], 'public/css/icons');
+    'resources/assets/front/fonts',
+], 'public/fonts');
+
 mix.copy (['resources/assets/admin/assets/libs/jquery/dist/jquery.min.js',],
     'public/js/jquery.min.js');
+mix.copy (['resources/assets/front/js/jquery.min.js',],
+    'public/js/jquery-v3.min.js');
 mix.copy ([
     'resources/assets/admin/assets/libs/select2/dist/js/select2.full.min.js',
     'resources/assets/admin/assets/libs/select2/dist/js/select2.min.js',
+    'resources/assets/front/js/jquery-migrate-3.0.1.min.js',
+    'resources/assets/front/js/aos.js',
+    'resources/assets/front/js/popper.min.js',
+    'resources/assets/front/js/bootstrap.min.js',
+    'resources/assets/front/js/jquery.easing.1.3.js',
+    'resources/assets/front/js/jquery.waypoints.min.js',
+    'resources/assets/front/js/jquery.stellar.min.js',
+    'resources/assets/front/js/owl.carousel.min.js',
+    'resources/assets/front/js/jquery.magnific-popup.min.js',
+    'resources/assets/front/js/jquery.animateNumber.min.js',
+    'resources/assets/front/js/bootstrap-datepicker.js',
+    'resources/assets/front/js/jquery.timepicker.min.js',
+    'resources/assets/front/js/scrollax.min.js',
+    'resources/assets/front/js/google-map.js',
+    'resources/assets/front/js/main.js',
     ],
     'public/js');
+
+//-- front pages
+
+mix.styles([
+    'resources/assets/front/css/open-iconic-bootstrap.min.css',
+    'resources/assets/front/css/animate.css',
+    'resources/assets/front/css/owl.carousel.min.css',
+    'resources/assets/front/css/owl.theme.default.min.css',
+    'resources/assets/front/css/magnific-popup.css',
+    'resources/assets/front/css/aos.css',
+    'resources/assets/front/css/ionicons.min.css',
+    //'resources/assets/front/css/bootstrap-datepicker.css',
+    //'resources/assets/front/css/jquery.timepicker.css',
+    'resources/assets/front/css/flaticon.css',
+    'resources/assets/front/css/icomoon.css',
+    'resources/assets/front/css/style.css',
+], 'public/css/front.css');
+
+//mix.js([
+    //'resources/assets/front/js/jquery.min.js',
+    //'resources/assets/front/js/jquery-migrate-3.0.1.min.js',
+    //'resources/assets/front/js/aos.js',
+    //'resources/assets/front/js/popper.min.js',
+    //'resources/assets/front/js/bootstrap.min.js',
+    //'resources/assets/front/js/jquery.easing.1.3.js',
+    //'resources/assets/front/js/jquery.waypoints.min.js',
+    //'resources/assets/front/js/jquery.stellar.min.js',
+    //'resources/assets/front/js/owl.carousel.min.js',
+    //'resources/assets/front/js/jquery.magnific-popup.min.js',
+    //'resources/assets/front/js/jquery.animateNumber.min.js',
+    //'resources/assets/front/js/bootstrap-datepicker.js',
+    //'resources/assets/front/js/jquery.timepicker.min.js',
+    //'resources/assets/front/js/scrollax.min.js',
+    //'resources/assets/front/js/google-map.js',
+    //'resources/assets/front/js/main.js',
+//], 'public/js/front.js');
 
