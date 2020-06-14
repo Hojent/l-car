@@ -108,6 +108,11 @@ class Post extends Model
             :   'Нет категории';
     }
 
+    public function getCategoryID()
+    {
+        return $this->category != null ? $this->category->id : null;
+    }
+
     public function setCategory($id) {
         if ($id == null) return;
         $this->category_id = $id;
@@ -169,5 +174,14 @@ class Post extends Model
 
         return $this->setFeatured();
     }
+
+    public function isStatus($value) {
+        if($value == null)
+        {
+            return null;
+        }
+        return true;
+    }
+
 
 }

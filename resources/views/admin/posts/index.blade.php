@@ -18,8 +18,9 @@
                                     <th>Заголовок</th>
                                     <th>Категория</th>
                                     <th>Картинка</th>
-                                    <th>Дата создания</th>
-                                    <th>Действие</th>
+                                    <th>Дата</th>
+                                    <th title="Статус документа">S</th>
+                                    <th title="Действие">A</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,16 +32,27 @@
                                         </td>
                                         <td>{{$post->getCategory()}}</td>
                                         <td><img width="100%" src="{{$post->getImage()}}"></td>
-                                        <td>{{$post->created_at}}<br>
-
+                                        <td>{{$post->created_at}}</td>
+                                        <td>
+                                        @if ($post->isStatus($post->status))
+                                                <i class="mdi mdi-eye float-left" title="опубликовано"></i>
+                                            @else
+                                                <i class="mdi mdi-eye-off" title="скрыто"></i>
+                                        @endif
+                                        @if ($post->isStatus($post->is_featured))
+                                                <i class="mdi mdi-star-circle" title="в избранном"></i>
+                                            @endif
                                         </td>
                                         <td>
                                             {{Form::open([
                                             'route'=>['posts.destroy', $post->id],
                                              'method'=>'delete'
                                              ])}}
-                                            <button title="@lang('messages.delete')" onclick="return confirm('удалить материал?')" type="submit" class="icon-delete">
-                                                <i class="far fa-trash-alt"></i>
+                                            <button class="btn btn-link btn-sm"
+                                                    title="@lang('messages.delete')"
+                                                onclick="return confirm('удалить материал?')"
+                                                    type="submit">
+                                                <i class="mdi mdi-delete fa-2x "></i>
                                             </button>
                                             {{Form::close()}}
                                         </td>

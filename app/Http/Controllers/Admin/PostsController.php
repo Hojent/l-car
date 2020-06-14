@@ -47,14 +47,14 @@ class PostsController extends Controller
 
         $this->validate($request, [
            'title' => 'required',
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+           'content' => 'required',
         ]);
         $post = Post::add($request->all());
         $post->uploadImage($request->file('image'));
         $post->setCategory($request->get('category_id'));
         $post->setTags($request->get('tags'));
         $post->toggleStatus($request->get('status'));
-        $post->toggleFeatured($request->get('featured'));
+        $post->toggleFeatured($request->get('is_featured'));
 
         return redirect(route('posts.index'));
     }
@@ -67,9 +67,17 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view ('admin.posts.edit', [
-            'post' => $post,
-        ]);
+        $categories = Category::pluck('title','id');
+        $tags = Tag::pluck('title','id');
+        $selectedtags = $post->tags->pluck('id')->all();
+        $category = $post->getCategoryID();
+        return view('admin.posts.edit', compact(
+            'categories',
+            'tags',
+            'post',
+            'selectedtags',
+            'category'
+        ));
     }
 
     /**
@@ -82,9 +90,16 @@ class PostsController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'title'	=>	'required' //обязательно
+            'title'	=>	'required',
+            'content' => 'required',
         ]);
         $post->update($request->all());
+        $post->uploadImage($request->file('image'));
+        $post->setCategory($request->get('category_id'));
+        $post->setTags($request->get('tags'));
+        $post->toggleStatus($request->get('status'));
+        $post->toggleFeatured($request->get('is_featured'));
+
         return redirect(route('posts.index'));
     }
 

@@ -15,7 +15,10 @@
                 <label class="col-md-5">@lang('messages.featured')</label>
                 <div class="col-md-7">
                     <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing1" name="featured">
+                        {{Form::checkbox('is_featured', '1', old('is_featured'), [
+                        'class'=>'custom-control-input',
+                        'id' => 'customControlAutosizing1',
+                        ])}}
                         <label class="custom-control-label" for="customControlAutosizing1">
                             @lang('messages.yes')
                         </label>
@@ -26,7 +29,10 @@
                 <label class="col-md-2">@lang('messages.status')</label>
                 <div class="col-md-10">
                     <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing2" name="status">
+                        {{Form::checkbox('status', '1', old('status'), [
+                       'class'=>'custom-control-input',
+                       'id' => 'customControlAutosizing2',
+                       ])}}
                         <label class="custom-control-label" for="customControlAutosizing2">
                             @lang('messages.public')
                         </label>
@@ -73,7 +79,8 @@
                     $tags, null, [
                     'class' => 'select2 form-control m-t-15',
                     'style' => 'width: 100%; height:36px;',
-                    'multiple' => 'multiple'])
+                    'multiple' => 'multiple',
+                    ])
                 }}
             </div>
         </div>
