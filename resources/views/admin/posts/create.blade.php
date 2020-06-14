@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="title" placeholder="введите заголовок" name="title" value="{{old('title')}}">
-                <textarea cols="30" rows="10" class="form-control" id="content" placeholder="содержание" name="content" data-value="{{old('content')}}"></textarea>
+                <textarea cols="30" rows="10" class="form-control" id="content" placeholder="содержание" name="content">{{old('content')}}</textarea>
             </div>
         </div>
         <div class="form-group row">
@@ -115,9 +115,11 @@
 @endsection
 @section('script')
     @parent
-    <
     <script>
         $(".select2").select2();
+    </script>
+    <script>
+        CKEDITOR.replace( 'content' );
     </script>
 @endsection
 <!-- ============================================================== -->

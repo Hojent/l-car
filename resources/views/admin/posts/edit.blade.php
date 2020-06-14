@@ -123,6 +123,9 @@
     <script>
         $(".select2").select2();
     </script>
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
 @endsection
 <!-- ============================================================== -->
 <!-- End PAge Content -->

@@ -254,7 +254,8 @@
 <!--Custom JavaScript -->
 {{--<script src="dist/js/custom.min.js"></script>--}}
 <!-- this page js -->
-
+<!-- ck editor -->
+<script type="text/javascript" src="{{ ('/assets/ckeditor/ckeditor.js') }}"></script>
 @yield('script')
 
 </body>
