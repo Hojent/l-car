@@ -16,18 +16,23 @@ class Post extends Model
 
     protected $fillable = ['title', 'content'];
 
-    public function category (){
+    //protected $dateFormat = 'd-m-Y';
+
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function author () {
+    public function author()
+    {
         return $this->belongsTo(User::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tags () {
+    public function tags()
+    {
         return $this->belongsToMany(
             Tag::class,
             'post_tags',
@@ -74,18 +79,19 @@ class Post extends Model
 
     public function removeImage()
     {
-        if($this->image != null)
-        {
+        if ($this->image != null) {
             Storage::delete('/uploads/' . $this->image);
         }
     }
 
     public function uploadImage($image)
     {
-        if($image == null) { return; }
+        if ($image == null) {
+            return;
+        }
         Storage::delete('uploads/' . $this->image);
         $this->removeImage();
-        $filename = 'pic'.$this->id.'.' . $image->extension();
+        $filename = 'pic' . $this->id . '.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->image = $filename;
         $this->save();
@@ -93,8 +99,7 @@ class Post extends Model
 
     public function getImage()
     {
-        if($this->image == null)
-        {
+        if ($this->image == null) {
             return '/images/no-image.jpg';
         }
 
@@ -102,10 +107,11 @@ class Post extends Model
 
     }
 
-    public function getCategory(){
+    public function getCategory()
+    {
         return ($this->category != null)
-            ?   $this->category->title
-            :   'Нет категории';
+            ? $this->category->title
+            : 'Нет категории';
     }
 
     public function getCategoryID()
@@ -113,21 +119,25 @@ class Post extends Model
         return $this->category != null ? $this->category->id : null;
     }
 
-    public function setCategory($id) {
+    public function setCategory($id)
+    {
         if ($id == null) return;
         $this->category_id = $id;
         $this->save();
     }
 
-    public function setTags ($ids) {
-        if($ids == null) {return;}
+    public function setTags($ids)
+    {
+        if ($ids == null) {
+            return;
+        }
         $this->tags()->sync($ids);
     }
 
     public function getTags()
     {
         return (!$this->tags->isEmpty())
-            ?   implode(', ', $this->tags->pluck('title')->all())
+            ? implode(', ', $this->tags->pluck('title')->all())
             : ' - ';
     }
 
@@ -145,8 +155,7 @@ class Post extends Model
 
     public function toggleStatus($value)
     {
-        if($value == null)
-        {
+        if ($value == null) {
             return $this->setDraft();
         }
 
@@ -167,21 +176,23 @@ class Post extends Model
 
     public function toggleFeatured($value)
     {
-        if($value == null)
-        {
+        if ($value == null) {
             return $this->setStandart();
         }
 
         return $this->setFeatured();
     }
 
-    public function isStatus($value) {
-        if($value == null)
-        {
+    public function isStatus($value)
+    {
+        if ($value == null) {
             return null;
         }
         return true;
     }
 
-
+    public function getDate()
+    {
+        return $this->created_at->format('F d, Y');
+    }
 }

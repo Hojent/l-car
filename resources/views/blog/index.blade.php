@@ -452,10 +452,13 @@
                         </a>
                         <div class="text pt-4">
                             <div class="meta mb-3">
-                                <div><a href="#">{{$post->created_at}}</a></div>
+                                <div><a href="#">{{$post->getCategory()}}</a></div>
                             </div>
                             <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
                             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        </div>
+                        <div class="small float-sm-right">
+                            {{$post->getDate()}}
                         </div>
                     </div>
                 </div>
