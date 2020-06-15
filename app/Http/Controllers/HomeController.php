@@ -20,7 +20,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(3);
+        $posts = Post::where([
+            ['is_featured', '=', 1],
+            ['status', '=', 1]
+            ])
+            ->orderBy('created_at', 'desc')
+            ->paginate(3);
         return view('blog.index', [
             'posts' => $posts,
         ]);
