@@ -118,7 +118,7 @@ class PostsController extends Controller
     public function category($category_id)
     {
         $posts = Post::where('category_id', '=', $category_id)->get();
-        $categoryTitle = $posts->first()->getCategory();
+        $categoryTitle = $posts->first()->getCategory() ?? 'empty';
         return view('admin.posts.index', [
             'posts' => $posts,
             'cid' => $category_id,

@@ -100,7 +100,7 @@ class Post extends Model
     public function getImage()
     {
         if ($this->image == null) {
-            return '/images/no-image.jpg';
+            return '/images/no-image.gif';
         }
 
         return '/uploads/' . $this->image;

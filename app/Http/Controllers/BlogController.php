@@ -10,23 +10,27 @@ use App\Tag;
 class BlogController extends Controller
 
 {
-    const BLOG_PAGES = 2;
+    const BLOG_PAGES = 10;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index($category_id)
     {
+
         $posts = Post::where([
             ['status', '=', 1],
-            ['category_id', '=', 3],
+            ['category_id', '=', $category_id],
         ])
             ->orderBy('created_at', 'desc')
             ->paginate(self::BLOG_PAGES);
+        $categoryTitle = $posts->first()->getCategory() ?? 'Наш Блог';
         return view('blog.index', [
             'posts' => $posts,
+            'cid' => $category_id,
+            'categoryTitle' => $categoryTitle
         ]);
     }
 
@@ -48,6 +52,25 @@ class BlogController extends Controller
            'categories' => $categories,
            'tags' => $tags,
        ]);
+    }
+
+    /**
+     * Display a list of resource.
+     *
+     * @param  int  $tag_id
+     * @return \Illuminate\Http\Response
+     */
+    public function tag($slug)
+    {
+        $tag = Tag::where ('slug',$slug)->firstOrFail();
+        $tagTitle = $tag->title;
+        $posts = $tag->posts()->where('status', '=', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(self::BLOG_PAGES);
+        return view('blog.index', [
+            'posts' => $posts,
+            'tagTitle' => $tagTitle,
+        ]);
     }
 
 }

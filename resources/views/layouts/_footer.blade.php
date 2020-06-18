@@ -18,10 +18,10 @@
                         <h2 class="ftco-heading-2">Клиентам</h2>
                         <ul class="list-unstyled">
                             <!-- список материалов категории about -->
-                            <li><a href="#" class="py-2 d-block">О нас</a></li>
-                            <li><a href="#" class="py-2 d-block">Услуги</a></li>
-                            <li><a href="#" class="py-2 d-block">Гарантии</a></li>
-                            <li><a href="#" class="py-2 d-block">Отзывы</a></li>
+                            <li><a href="{{route('article', 'o-nas')}}" class="py-2 d-block">О нас</a></li>
+                            <li><a href="{{route('article', 'uslugi')}}" class="py-2 d-block">Услуги</a></li>
+                            <li><a href="{{route('article', 'garantii')}}" class="py-2 d-block">Гарантии</a></li>
+                            <li><a href="{{route('article', 'otzyvy')}}" class="py-2 d-block">Отзывы</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,10 +30,11 @@
                         <h2 class="ftco-heading-2">Оплата и доставка</h2>
                         <ul class="list-unstyled">
                             <!-- список материалов категории payment -->
-                            <li><a href="#" class="py-2 d-block">Оплата</a></li>
-                            <li><a href="#" class="py-2 d-block">Доставка</a></li>
-                            <li><a href="#" class="py-2 d-block">Как добраться</a></li>
-                            <li><a href="#" class="py-2 d-block">Контакты</a></li>
+                            <li><a href="{{route('article', 'oplata')}}" class="py-2 d-block">Оплата</a></li>
+                            <li><a href="{{route('article', 'dostavka')}}" class="py-2 d-block">Доставка</a></li>
+
+                            <li><a href="{{route('article','kak-dobratsya')}}" class="py-2 d-block">Как добраться</a></li>
+                            <li><a href="{{route('article','kontakty')}}" class="py-2 d-block">Контакты</a></li>
                         </ul>
                     </div>
                 </div>

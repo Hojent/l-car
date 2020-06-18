@@ -431,9 +431,6 @@
             </div>
         </div>
     </section>
-
-
-
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center mb-5">
@@ -446,15 +443,12 @@
                 @foreach ($posts as $post)
                 <div class="col-md-4 d-flex ftco-animate">
                     <div class="blog-entry justify-content-end">
-                        <a href="{{$post->slug}}.html" class="block-20"
+                        <a href="{{route('article', $post->slug)}}" class="block-20"
                            style="background-size: 100%;
                                   background-image: url('{{$post->getImage()}}');">
                         </a>
                         <div class="text pt-4">
-                            <div class="meta mb-3">
-                                <div><a href="#">{{$post->getCategory()}}</a></div>
-                            </div>
-                            <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
+                           <h3 class="heading mt-2"><a href="{{route('article', $post->slug)}}">{{$post->title}}</a></h3>
                             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                         </div>
                         <div class="small float-sm-right">
@@ -467,5 +461,4 @@
             {{$posts->links()}}
         </div>
     </section>
-
 @endsection
