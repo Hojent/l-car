@@ -114,4 +114,10 @@ class PostsController extends Controller
         $post->remove();
         return redirect()->route('posts.index');
     }
+
+    public function category($category_id)
+    {
+        $posts = Post::where('category_id', '=', $category_id);
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
 }

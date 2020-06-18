@@ -22,11 +22,12 @@ class HomeController extends Controller
     {
         $posts = Post::where([
             ['is_featured', '=', 1],
-            ['status', '=', 1]
+            ['status', '=', 1],
+            ['category_id', '=', 3],
             ])
             ->orderBy('created_at', 'desc')
             ->paginate(3);
-        return view('blog.index', [
+        return view('blog.home', [
             'posts' => $posts,
         ]);
     }

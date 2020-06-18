@@ -6,12 +6,12 @@
 
     <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="car.html" class="nav-link">Our Car</a></li>
-            <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+         <li class="nav-item active"><a href="{{route('home')}}" class="nav-link">Главная</a></li>
+         <li class="nav-item"><a href="/about" class="nav-link">О нас</a></li>
+         <li class="nav-item"><a href="/cars" class="nav-link">Авто в разборке</a></li>
+         <li class="nav-item"><a href="/oplata" class="nav-link">Оплата и доставка</a></li>
+         <li class="nav-item"><a href="{{route('blog')}}" class="nav-link">Блог</a></li>
+         <li class="nav-item"><a href="/contacts" class="nav-link">Контакты</a></li>
         </ul>
     </div>
 </div>
