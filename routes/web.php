@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@show')->name('article');
-Route::get('/admin/category/{id}', 'BlogController@category')->name('category');
+Route::get('/admin/category/{id}', 'Admin\PostsController@category')->name('category');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('admin');

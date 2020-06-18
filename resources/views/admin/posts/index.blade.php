@@ -8,7 +8,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title m-b-0">
-                        @lang('headers.index_posts')
+                        @lang('headers.index_posts'):
+                        @if ($cid)
+                        {{$categoryTitle}}
+                        @endif
                     </h4>
                     <div class="table-responsive">
                         <div class="row">

@@ -18,7 +18,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', ['posts' => $posts]);
+        return view('admin.posts.index', ['posts' => $posts, 'cid' => false]);
     }
 
     /**
@@ -117,7 +117,12 @@ class PostsController extends Controller
 
     public function category($category_id)
     {
-        $posts = Post::where('category_id', '=', $category_id);
-        return view('admin.posts.index', ['posts' => $posts]);
+        $posts = Post::where('category_id', '=', $category_id)->get();
+        $categoryTitle = $posts->first()->getCategory();
+        return view('admin.posts.index', [
+            'posts' => $posts,
+            'cid' => $category_id,
+            'categoryTitle' => $categoryTitle,
+        ]);
     }
 }
