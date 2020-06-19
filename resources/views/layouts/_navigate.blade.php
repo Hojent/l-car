@@ -1,5 +1,5 @@
 <div class="container">
-    <a class="navbar-brand" href="index.html">Auto<span>road</span></a>
+    <a class="navbar-brand" href="/">Auto<span>road</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
     </button>
@@ -11,7 +11,8 @@
          <li class="nav-item"><a href="{{route('complects')}}" class="nav-link">Авто в разборке</a></li>
          <li class="nav-item"><a href="{{route('article', 'dostavka')}}" class="nav-link">Доставка</a></li>
          <li class="nav-item"><a href="{{route('blog', 3)}}" class="nav-link">Новости</a></li>
-         <li class="nav-item"><a href="{{route('article', 'kontakty')}}" class="nav-link">Контакты</a></li>
+         <li class="nav-item" ><a href="{{route('article', 'kontakty')}}" class="nav-link">Контакты</a></li>
+          <li class="nav-item"><a href="/admin" class="nav-link">Админ</a></li>
         </ul>
     </div>
 </div>

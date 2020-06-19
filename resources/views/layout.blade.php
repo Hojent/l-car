@@ -40,6 +40,5 @@
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=need-to-be-get&sensor=false"></script>-->
 
 <!-- loader -->
-
 </body>
 </html>

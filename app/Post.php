@@ -195,4 +195,14 @@ class Post extends Model
     {
         return $this->created_at->format('F d, Y');
     }
+
+    /**
+     * Called in the AppServiceProvider to send vars into any view
+     * @param $cid
+     * @return mixed
+     */
+
+    public static function getFooterLinks($cid) {
+        return self::where([['category_id', $cid],['status', 1]])->get();
+    }
 }

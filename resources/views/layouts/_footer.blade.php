@@ -17,11 +17,10 @@
                     <div class="ftco-footer-widget mb-4 ml-md-5">
                         <h2 class="ftco-heading-2">Клиентам</h2>
                         <ul class="list-unstyled">
+                           @foreach($welinks as $welink)
                             <!-- список материалов категории about -->
-                            <li><a href="{{route('article', 'o-nas')}}" class="py-2 d-block">О нас</a></li>
-                            <li><a href="{{route('article', 'uslugi')}}" class="py-2 d-block">Услуги</a></li>
-                            <li><a href="{{route('article', 'garantii')}}" class="py-2 d-block">Гарантии</a></li>
-                            <li><a href="{{route('article', 'otzyvy')}}" class="py-2 d-block">Отзывы</a></li>
+                            <li><a href="{{route('article', $welink->slug)}}" class="py-2 d-block">{{$welink->title}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -30,11 +29,9 @@
                         <h2 class="ftco-heading-2">Оплата и доставка</h2>
                         <ul class="list-unstyled">
                             <!-- список материалов категории payment -->
-                            <li><a href="{{route('article', 'oplata')}}" class="py-2 d-block">Оплата</a></li>
-                            <li><a href="{{route('article', 'dostavka')}}" class="py-2 d-block">Доставка</a></li>
-
-                            <li><a href="{{route('article','kak-dobratsya')}}" class="py-2 d-block">Как добраться</a></li>
-                            <li><a href="{{route('article','kontakty')}}" class="py-2 d-block">Контакты</a></li>
+                            @foreach($payLinks as $payLink)
+                             <li><a href="{{route('article', $payLink->slug)}}" class="py-2 d-block">{{$payLink->title}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
