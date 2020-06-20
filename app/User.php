@@ -84,12 +84,12 @@ class User extends Authenticatable
 
     public function getImage()
     {
-        if($this->avatar == null)
+        if($this->image == null)
         {
-            return '/img/no-image.png';
+            return '/images/no-image.gif';
         }
 
-        return '/uploads/' . $this->avatar;
+        return '/uploads/user/' . $this->image;
     }
 
     public function isAdmin() {
