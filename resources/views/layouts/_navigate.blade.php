@@ -12,7 +12,7 @@
          <li class="nav-item"><a href="{{route('article', 'dostavka')}}" class="nav-link">Доставка</a></li>
          <li class="nav-item"><a href="{{route('blog', 3)}}" class="nav-link">Новости</a></li>
          <li class="nav-item" ><a href="{{route('article', 'kontakty')}}" class="nav-link">Контакты</a></li>
-          <li class="nav-item"><a href="/admin" class="nav-link">Админ</a></li>
+          <li class="nav-item" ><a href="#" data-toggle="modal" data-target="#modal" class="nav-link">E-mail</a></li>
         </ul>
     </div>
 </div>
