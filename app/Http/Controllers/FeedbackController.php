@@ -8,17 +8,12 @@ use App\Mail\Feedback;
 
 class FeedbackController extends Controller
 {
-    public function send() {
-        $comment = 'Это сообщение отправлено из формы обратной связи';
+    public function send(Request $request) {
+        $mess = new Feedback($request);
         $toEmail = "admin@avtobelarus.com";
-        //Mail::to($toEmail)->send(new Feedback($comment));
-
-
-        Mail::send('emails.feedback', array('key' => 'value'), function($message)
-        {
-           $message->to('admin@avtobelarus.com', 'John Smith')->subject('Welcome!');
-        });
-
-        return 'Сообщение отправлено на адрес '. $toEmail;
+        Mail::to($toEmail)
+        ->send($mess->subject('Welcome!'));
+        return redirect()->back()
+            ->with('status', 'Ваше сообщение успешно отправлено владельцу сайта!'); //создание переменной status в сессии - session('status')
     }
 }

@@ -13,18 +13,26 @@
             <div class="modal-body">
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="title" class="col-sm-3 text-right control-label col-form-label">@lang('messages.name')</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="title" placeholder="название категории блога" name="title">
+                            <input type="text" class="form-control" id="client" placeholder="Ваше имя" name="client">
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" id="content" placeholder="текст сообщения" name="content"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" placeholder="Ваш e-mail" name="email">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     @lang('messages.close')</button>
-                <button type="submit" class="btn btn-primary">@lang('messages.save')</button>
+                <button type="submit" class="btn btn-primary">@lang('messages.send')</button>
             </div>
             {!! Form::close() !!}
         </div>

@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
-//Route::get('/feedback', 'FeedbackController@feedback')->name('feedback');
-//Route::post('/feedback', 'FeedbackController@send')->name('send');
 Route::post('/send-email', 'FeedbackController@send')->name('send');
+//Route::get('/send-email', 'FeedbackController@send')->name('sent');
 
 //Blog & Documents
 Route::get('/blog/category/{id}', 'BlogController@index')->name('blog');
