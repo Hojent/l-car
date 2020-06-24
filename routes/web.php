@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/bodies', 'Cars\BodiesController');
     Route::resource('/motors', 'Cars\MotorsController');
     Route::resource('/groups', 'Cars\GroupsController');
+    Route::resource('/volumes', 'Cars\VolumesController');
 //blog part
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');

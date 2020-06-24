@@ -15,18 +15,8 @@ class BodiesController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tags.index', ['tags' => $tags]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $bodies = Body::all();
+        return view('admin.dictes.bodies.index', ['bodies' => $bodies]);
     }
 
     /**
@@ -37,51 +27,50 @@ class BodiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+        Body::create($request->all());
+        return redirect(route('bodies.index'));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Body  $body
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Body $body)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Body  $body
+     * @param  \App\Models\Dictes\Body  $body
      * @return \Illuminate\Http\Response
      */
     public function edit(Body $body)
     {
-        //
+        return view('admin.dictes.bodies.edit', [
+            'body' => $body,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Body  $body
+     * @param  \App\Models\Dictes\Body  $body
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Body $body)
     {
-        //
+        $this->validate($request, [
+            'body'	=>	'required' //обязательно
+        ]);
+        $body->update($request->all());
+        return redirect(route('bodies.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Body  $body
+     * @param  \App\Models\Dictes\Year  $year
      * @return \Illuminate\Http\Response
      */
     public function destroy(Body $body)
     {
-        //
+        $body->delete();
+        return redirect()->route('bodies.index');
     }
 }

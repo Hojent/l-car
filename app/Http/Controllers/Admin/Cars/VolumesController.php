@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin\Cars;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dictes\Motor;
+use App\Models\Dictes\Volume;
 use Illuminate\Http\Request;
 
-class MotorsController extends Controller
+class VolumesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class MotorsController extends Controller
      */
     public function index()
     {
-        $motors = Motor::all();
-        return view('admin.dictes.motors.index', ['motors' => $motors]);
+        $volumes = Volume::all();
+        return view('admin.dictes.volumes.index', ['volumes' => $volumes]);
     }
 
-    /**
+       /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -27,50 +27,50 @@ class MotorsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'motor' => 'required'
+       $this->validate($request, [
+            'title' => 'required'
         ]);
-        Motor::create($request->all());
-        return redirect(route('motors.index'));
+        Volume::create($request->all());
+        return redirect(route('volumes.index'));
     }
+
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dictes\Motor  $motor
+     * @param  \App\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function edit(Motor $motor)
+    public function edit(Volume $volume)
     {
-        return view('admin.dictes.motors.edit', [
-            'motor' => $motor,
-        ]);
+        return view('admin.dictes.volumes.edit', ['volume' => $volume]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dictes\Motor  $motor
+     * @param  \App\Models\Dictes\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Motor $motor)
+    public function update(Request $request, Volume $volume)
     {
         $this->validate($request, [
-            'motor'	=>	'required' //обязательно
+            'volume'	=>	'required' //обязательно
         ]);
-        $motor->update($request->all());
-        return redirect(route('motors.index'));
+        $volume->update($request->all());
+        return redirect(route('volumes.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dictes\Motor $motor
+     * @param  \App\Models\Dictes\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Motor $motor)
+    public function destroy(Volume $volume)
     {
-        $motor->delete();
-        return redirect()->route('motors.index');
+        $volume->delete();
+        return redirect(route('volumes.index'));
     }
 }
