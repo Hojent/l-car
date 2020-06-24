@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Cars;
 use App\Http\Controllers\Controller;
 use App\Models\Model;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class ModelsController extends Controller
 {
@@ -15,7 +16,8 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        //
+        $models = Model::all();
+        return view('admin.cars.models.index', ['models' => $models, 'cid' => false]);
     }
 
     /**
@@ -25,7 +27,10 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        //
+        $brands =Brand::pluck('title','id');
+        return view('admin.cars.models.create', [
+            'brands' => $brands,
+        ]);
     }
 
     /**
@@ -36,21 +41,15 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+        $model = Model::create($request->all());
+        $model->setBrand($request->get('brand_id'));
+        return redirect(route('models.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Model  $model
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Model $model)
-    {
-        //
-    }
-
-    /**
+       /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Model  $model
@@ -58,7 +57,10 @@ class ModelsController extends Controller
      */
     public function edit(Model $model)
     {
-        //
+        $brands = Brand::pluck('title','id');
+        $brand = $model->getBrandID();
+        return view('admin.cars.models.edit', compact(
+            'brands','model','brand'));
     }
 
     /**
@@ -70,7 +72,12 @@ class ModelsController extends Controller
      */
     public function update(Request $request, Model $model)
     {
-        //
+        $this->validate($request, [
+            'title'	=>	'required',
+        ]);
+        $model->update($request->all());
+        $model->setBrand($request->get('brand_id'));
+        return redirect(route('models.index.index'));
     }
 
     /**
@@ -81,6 +88,7 @@ class ModelsController extends Controller
      */
     public function destroy(Model $model)
     {
-        //
+        $model->delete();
+        return redirect(route('models.index'));
     }
 }

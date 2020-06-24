@@ -1,48 +1,14 @@
 @extends('admin.layout')
 @section('title')
-    @lang('headers.edit_post')
+    @lang('headers.edit_model')
 @endsection
 @section('content')
 
     {{ Form::open([
-     'route' => ['posts.update', $post->id],
-     'file' => 'true',
-     'enctype' => 'multipart/form-data',
+     'route' => ['models.update', $model->id],
      'method' => 'put',
      ]) }}
     <div class="card-body">
-        <!--------- checkboxes -->
-        <div class="row">
-            <div class="form-group row col-sm-4">
-                <label class="col-md-5">@lang('messages.featured')</label>
-                <div class="col-md-7">
-                    <div class="custom-control custom-checkbox mr-sm-2">
-                        {{Form::checkbox('is_featured', '1', $post->is_featured, [
-                        'class'=>'custom-control-input',
-                        'id' => 'customControlAutosizing1',
-                        ])}}
-                        <label class="custom-control-label" for="customControlAutosizing1">
-                            @lang('messages.yes')
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row col-sm-8">
-                <label class="col-md-2">@lang('messages.status')</label>
-                <div class="col-md-10">
-                    <div class="custom-control custom-checkbox mr-sm-2">
-                        {{Form::checkbox('status', '1', $post->status, [
-                       'class'=>'custom-control-input',
-                       'id' => 'customControlAutosizing2',
-                       ])}}
-                        <label class="custom-control-label" for="customControlAutosizing2">
-                            @lang('messages.public')
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--------- end checkboxes -->
         <div class="form-group row">
             <div class="col-sm-2">
                 <label for="title" class="col-sm-3 text-right control-label col-form-label">

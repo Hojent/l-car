@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('title')
-    {{ __('headers.admin_posts') }}
+    {{ __('headers.admin_dictes') }}
 @endsection
 @section('content')
     <div class="row">
@@ -8,9 +8,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title m-b-0">
-                        @lang('headers.index_posts'):
+                        @lang('messages.models'):
                         @if ($cid)
-                        {{$categoryTitle}}
+                        {{$brandTitle}}
                         @endif
                     </h4>
                     <div class="table-responsive">
@@ -18,44 +18,25 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Заголовок</th>
-                                    <th>Категория</th>
-                                    <th>Картинка</th>
-                                    <th>Дата</th>
-                                    <th title="Статус документа">S</th>
-                                    <th title="Действие">A</th>
+                                    <th>Название</th>
+                                    <th>Марка</th>
+                                    <th title="Действие">Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($posts as $post)
+                                @foreach ($models as $model)
                                     <tr>
                                         <td>
-                                            <a href="{{route('posts.edit',$post->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_post')">{{$post->title}}</a><br>
-                                            @lang('messages.tags'): <span class="small">{{$post->getTags()}}</span>
-                                        </td>
-                                        <td>{{$post->getCategory()}}</td>
-                                        <td><img width="100%" src="{{$post->getImage()}}"></td>
-                                        <td>{{$post->created_at}}</td>
-                                        <td>
-                                        @if ($post->isStatus($post->status))
-                                                <i class="mdi mdi-eye float-left" title="опубликовано"></i>
-                                            @else
-                                                <i class="mdi mdi-eye-off" title="скрыто"></i>
-                                        @endif
-                                        @if ($post->isStatus($post->is_featured))
-                                                <i class="mdi mdi-star-circle" title="в избранном"></i>
-                                            @endif
-                                        </td>
+                                            <a href="{{route('models.edit',$model->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_model')">{{$model->title}}</a></td>
+                                        <td>{{$model->getBrand()}}</td>
                                         <td>
                                             {{Form::open([
-                                            'route'=>['posts.destroy', $post->id],
+                                            'route'=>['models.destroy', $model->id],
                                              'method'=>'delete'
                                              ])}}
                                             <button class="btn btn-link btn-sm"
                                                     title="@lang('messages.delete')"
-                                                onclick="return confirm('удалить материал?')"
-                                                    type="submit">
-                                                <i class="mdi mdi-delete fa-2x "></i>
+                                                onclick="return confirm('удалить модель?')" type="submit"> <i class="mdi mdi-delete fa-2x "></i>
                                             </button>
                                             {{Form::close()}}
                                         </td>
@@ -66,7 +47,7 @@
                         </div>
                     </div>
                     <div>
-                           <a href="{{route('posts.create')}}" class="btn btn-sm btn-info")>
+                           <a href="{{route('models.create')}}" class="btn btn-sm btn-info")>
                                @lang('messages.add')
                            </a>
                     </div>
@@ -79,7 +60,6 @@
 @endsection
 @section('script')
     @parent
-    <
     <script>
        $('#zero_config').DataTable();
     </script>

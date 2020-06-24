@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/groups', 'Cars\GroupsController');
     Route::resource('/volumes', 'Cars\VolumesController');
     Route::resource('/brands', 'Cars\BrandsController');
+    Route::resource('/models', 'Cars\ModelsController');
 //blog part
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');
