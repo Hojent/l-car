@@ -4,8 +4,8 @@
     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{'parts'}}" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu">Запчасти</span></a></li>
     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chemical-weapon"></i><span class="hide-menu">Марки автомобилей</span></a>
         <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item"><a href="{{'brands'}}" class="sidebar-link"><i class="fab fa-steam-square"></i><span class="hide-menu"> Бренды </span></a></li>
-            <li class="sidebar-item"><a href="{{'models'}}" class="sidebar-link"><i class="fab fa-steam-symbol"></i><span class="hide-menu"> Модели </span></a></li>
+            <li class="sidebar-item"><a href="{{route('brands.index')}}" class="sidebar-link"><i class="fab fa-steam-square"></i><span class="hide-menu"> Бренды </span></a></li>
+            <li class="sidebar-item"><a href="{{route('models.index')}}" class="sidebar-link"><i class="fab fa-steam-symbol"></i><span class="hide-menu"> Модели </span></a></li>
         </ul>
     </li>
     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-blogger"></i><span class="hide-menu">Блог</span></a>

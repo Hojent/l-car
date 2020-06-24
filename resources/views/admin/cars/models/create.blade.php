@@ -20,7 +20,7 @@
         <div class="form-group row">
             <div class="col-sm-2">
                 <label class="col-sm-3 text-right control-label col-form-label">
-                    @lang('messages.brand')
+                    @lang('messages.models')
                 </label>
             </div>
             <div class="col-sm-10">

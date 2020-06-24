@@ -16,7 +16,7 @@
                     <li class="d-flex no-block card-body border-top">
                         <i class="fa fa-check-circle w-30px m-t-5"></i>
                         <div>
-                            <a href="{{route('motors.edit',$brand->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_brand')">{{$brand->title}}</a>
+                            <a href="{{route('brands.edit',$brand->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_brand')">{{$brand->title}}</a>
                         </div>
                         <div class="ml-auto">
                             {{Form::open(['route'=>['brands.destroy', $brand->id], 'method'=>'delete'])}}

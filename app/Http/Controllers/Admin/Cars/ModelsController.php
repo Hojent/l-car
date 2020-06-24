@@ -77,7 +77,7 @@ class ModelsController extends Controller
         ]);
         $model->update($request->all());
         $model->setBrand($request->get('brand_id'));
-        return redirect(route('models.index.index'));
+        return redirect(route('models.index'));
     }
 
     /**
