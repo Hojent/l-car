@@ -4,6 +4,7 @@ namespace App\Models\Dictes;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Complect;
 
 class Year extends Model
 {
@@ -11,8 +12,8 @@ class Year extends Model
 
     protected $fillable = [ 'year'];
 
-    public function cars() {
-        //return $this->hasMany(Post::class);
+    public function complects() {
+        return $this->hasMany(Complect::class);
     }
 
     /**

@@ -167,8 +167,9 @@
         <div class="col-md-6 col-lg-3">
           <div class="card card-hover">
             <div class="box bg-cyan text-center">
-              <h1 class="font-light text-white"><i class="fas fa-globe"></i></h1>
-              <h6 class="text-white"><a href="{{'/'}}">Сайт</a></h6>
+              <a href="{{route('home')}}" target="_blank"><h1 class="font-light text-white"><i class="fas fa-globe"></i></h1>
+                <h6 class="text-white">Сайт</h6>
+              </a>
             </div>
           </div>
         </div>
@@ -176,8 +177,10 @@
         <div class="col-md-6 col-lg-3">
           <div class="card card-hover">
             <div class="box bg-success text-center">
-              <h1 class="font-light text-white"><i class="fas fa-car"></i></h1>
-              <h6 class="text-white"><a href="{{'cars'}}">Машинокомплекты</a></h6>
+              <a href="{{route('complects.index')}}">
+                <h1 class="font-light text-white"><i class="fas fa-car"></i></h1>
+              <h6 class="text-white">Машинокомплекты</h6>
+              </a>
             </div>
           </div>
         </div>
@@ -194,8 +197,10 @@
         <div class="col-md-6 col-lg-3">
           <div class="card card-hover">
             <div class="box bg-danger text-center">
-              <h1 class="font-light text-white"><i class="fab fa-earlybirds"></i></h1>
-              <h6 class="text-white">Новости</h6>
+              <a href="{{route('category', 3)}}">
+                <h1 class="font-light text-white"><i class="fab fa-earlybirds"></i></h1>
+                <h6 class="text-white">Новости</h6>
+              </a>
             </div>
           </div>
         </div>

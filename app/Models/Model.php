@@ -16,6 +16,10 @@ class Model extends BaseModel
         return $this->belongsTo(Brand::class);
     }
 
+    public function complects() {
+        return $this->hasMany(Complect::class);
+    }
+
     public function getBrand()
     {
         return ($this->brand != null)
@@ -34,7 +38,6 @@ class Model extends BaseModel
         $this->brand_id = $id;
         $this->save();
     }
-
 
     /**
      * Return the sluggable configuration array for this model.

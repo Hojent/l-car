@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/volumes', 'Cars\VolumesController');
     Route::resource('/brands', 'Cars\BrandsController');
     Route::resource('/models', 'Cars\ModelsController');
+    Route::resource('/complects', 'Cars\ComplectsController');
 //blog part
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');
@@ -40,9 +41,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
+    Route::get('/category/{id}', 'PostsController@category')->name('category');;
 
 });
-Route::get('/admin/category/{id}', 'Admin\PostsController@category')->name('category')->middleware('auth');;
+
 //-----
 
 

@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('title')
-    {{ __('headers.admin_dictes') }}
+    @lang('headers.admin_complects')
 @endsection
 @section('content')
     <div class="row">
@@ -8,7 +8,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title m-b-0">
-                        @lang('messages.models')
+                        @lang('messages.brand'):
+                        @if ($cid)
+                        {{$brandTitle}}
+                        @endif
                     </h4>
                     <div class="table-responsive">
                         <div class="row">
@@ -16,24 +19,37 @@
                                 <thead>
                                 <tr>
                                     <th>Название</th>
-                                    <th>Марка</th>
+                                    <th>Марка\Модель</th>
                                     <th title="Действие">Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($models as $model)
+                                @foreach ($complects as $complect)
                                     <tr>
                                         <td>
-                                            <a href="{{route('models.edit',$model->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_model')">{{$model->title}}</a></td>
-                                        <td>{{$model->getBrand()}}</td>
+                                            <a href="{{route('complects.edit',$complect->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_complect')">{{$complect->title}}</a><br>
+                         <img width="150px" src="{{$complect->images}}">
+
+                                        </td>
+                                        <td>
+                                            {{$complect->getBrand()}}/
+                                            {{$complect->getModel()}}<br>
+                                            Кузов: {{$complect->getBody()}}<br>
+                                            Двигатель: {{$complect->getMotor()}}<br>
+                                            Объем: {{$complect->getVolume()}}<br>
+                                            Год: {{$complect->getYear()}}<br>
+                                            Кол-во дверей: {{$complect->doors}}<br>
+                                            Цвет: {{$complect->color}}<br>
+                                        </td>
                                         <td>
                                             {{Form::open([
-                                            'route'=>['models.destroy', $model->id],
+                                            'route'=>['complects.destroy',
+                                                $complect->id],
                                              'method'=>'delete'
                                              ])}}
                                             <button class="btn btn-link btn-sm"
                                                     title="@lang('messages.delete')"
-                                                onclick="return confirm('удалить модель?')" type="submit"> <i class="mdi mdi-delete fa-2x "></i>
+                                                onclick="return confirm('удалить машину?')" type="submit"> <i class="mdi mdi-delete fa-2x "></i>
                                             </button>
                                             {{Form::close()}}
                                         </td>
@@ -44,7 +60,7 @@
                         </div>
                     </div>
                     <div>
-                           <a href="{{route('models.create')}}" class="btn btn-sm btn-info")>
+                           <a href="{{route('complects.create')}}" class="btn btn-sm btn-info")>
                                @lang('messages.add')
                            </a>
                     </div>

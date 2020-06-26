@@ -8,22 +8,22 @@
      ]) }}
     <div class="card-body">
         <div class="form-group row">
-            <div class="col-sm-2">
-            <label for="title" class="col-sm-3 text-right control-label col-form-label">
-                @lang('messages.title')
+            <div class="col-sm-3">
+            <label for="title" class=" text-right control-label col-form-label">
+                @lang('messages.models')
             </label>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <input type="text" class="form-control" id="title" placeholder="введите заголовок" name="title" value="{{old('title')}}">
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-2">
-                <label class="col-sm-3 text-right control-label col-form-label">
-                    @lang('messages.models')
+            <div class="col-sm-3">
+                <label class="text-right control-label col-form-label">
+                    @lang('messages.brand')
                 </label>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 {{Form::select('brand_id',
                     $brands, null,
                     ['placeholder' => 'Выберите марку авто',
