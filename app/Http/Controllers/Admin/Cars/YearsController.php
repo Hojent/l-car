@@ -15,7 +15,7 @@ class YearsController extends Controller
      */
     public function index()
     {
-        $years = Year::all();
+        $years = Year::all()->sortBy('year');
         return view('admin.dictes.years.index', ['years' => $years]);
     }
 

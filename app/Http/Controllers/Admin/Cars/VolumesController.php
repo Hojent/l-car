@@ -15,7 +15,7 @@ class VolumesController extends Controller
      */
     public function index()
     {
-        $volumes = Volume::all();
+        $volumes = Volume::all()->sortBy('title');
         return view('admin.dictes.volumes.index', ['volumes' => $volumes]);
     }
 

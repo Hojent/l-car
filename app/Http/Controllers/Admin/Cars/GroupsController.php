@@ -15,7 +15,7 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
+        $groups = Group::orderBy('group', 'ASC')->get();
         return view('admin.dictes.groups.index', ['groups' => $groups]);
     }
 
