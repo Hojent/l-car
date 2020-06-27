@@ -91,4 +91,20 @@ class ModelsController extends Controller
         $model->delete();
         return redirect(route('models.index'));
     }
+
+    public function get_by_brand(Request $request)
+    {
+        //abort_unless(\Gate::allows('city_access'), 401);
+        if (!$request->brand_id) {
+            $html = '<option value="">Модель</option>';
+        } else {
+            $html = '';
+            $models = Model::where('brand_id', $request->brand_id)->get();
+            foreach ($models as $model) {
+                $html .= '<option value="'.$model->id.'">'.$model->title.'</option>';
+            }
+        }
+
+        return response()->json(['html' => $html]);
+    }
 }

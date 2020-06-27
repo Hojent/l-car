@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Cars;
 use App\Http\Controllers\Controller;
 use App\Models\Complect;
 use App\Models\Brand;
-use App\Models\Model;
+use App\Models\Model as CarModel;
 use App\Models\Dictes\Motor;
 use App\Models\Dictes\Year;
 use App\Models\Dictes\Volume;
@@ -36,7 +36,7 @@ class ComplectsController extends Controller
     public function create()
     {
         $brands = Brand::pluck('title', 'id');
-        $models = Model::pluck('title', 'id');
+        //$models = CarModel::pluck('title', 'id');
         $years = Year::pluck('year', 'id');
         $motors = Motor::pluck('motor', 'id');
         $bodies = Body::pluck('body', 'id');
@@ -44,7 +44,6 @@ class ComplectsController extends Controller
         $doors = array(2=>2, 3=>3, 4=>4, 5=>5); //array for select tag
         return view ('admin.cars.complects.create', compact(
             'brands',
-            'models',
             'years',
             'motors',
             'bodies',
@@ -84,7 +83,6 @@ class ComplectsController extends Controller
     public function edit(Complect $complect)
     {
         $brands = Brand::pluck('title', 'id');
-        $models = Model::pluck('title', 'id');
         $years = Year::pluck('year', 'id');
         $motors = Motor::pluck('motor', 'id');
         $bodies = Body::pluck('body', 'id');
@@ -93,6 +91,7 @@ class ComplectsController extends Controller
         //real data
         //$carParts = $complect->parts->pluck('id')->all();
         $brand = $complect->getBrandID();
+        $models = CarModel::where('brand_id', '=', $brand)->pluck('title', 'id');
         $model = $complect->getModelID();
         $year = $complect->getYearID();
         $motor = $complect->getMotorID();

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/send-email', 'FeedbackController@send')->name('send');
 //Route::get('/send-email', 'FeedbackController@send')->name('sent');
+Route::get('models/get_by_brand', 'ModelsController@get_by_brand')->name('get_by_brand');
 
 //Blog & Documents
 Route::get('/blog/category/{id}', 'BlogController@index')->name('blog');
@@ -32,6 +33,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/brands', 'Cars\BrandsController');
     Route::resource('/models', 'Cars\ModelsController');
     Route::resource('/complects', 'Cars\ComplectsController');
+    Route::get('/complects/create/get_by_brand', 'Cars\ModelsController@get_by_brand')->name('get_by_brand');
+
 //blog part
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');
@@ -41,8 +44,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
-    Route::get('/category/{id}', 'PostsController@category')->name('category');;
-
+    Route::get('/category/{id}', 'PostsController@category')->name('category');
 });
 
 //-----

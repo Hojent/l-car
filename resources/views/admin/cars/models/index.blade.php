@@ -8,7 +8,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title m-b-0">
-                        @lang('messages.models')
+                        @lang('messages.models'):
+                        @if ($cid)
+                            {{$brandTitle}}
+                        @endif
                     </h4>
                     <div class="table-responsive">
                         <div class="row">

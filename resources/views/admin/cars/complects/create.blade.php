@@ -54,18 +54,20 @@
                         ['placeholder' => 'Марка',
                         'class' => 'select2 form-control custom-select',
                         'style' => 'width: 100%; height:36px;',
-                        'required' => true]
+                        'required' => true,
+                        'id' => 'brand']
                         )
                     }}
                 </div>
-                <div class="box">
-                    {{Form::select('model_id',
-                        $models, null,
-                        ['placeholder' => 'Модель',
-                        'class' => 'select2 form-control custom-select',
-                        'style' => 'width: 100%; height:36px;']
-                        )
-                    }}
+                <div class="box {{ $errors->has('model_id') ? 'has-error' : '' }}">
+                    <select name="model_id" id="model" class="select2 form-control custom-select" style = "width: 100%; height:36px;">
+                        <option value="">Модель</option>
+                    </select>
+                    @if($errors->has('model_id'))
+                        <p class="help-block">
+                            {{ $errors->first('model_id') }}
+                        </p>
+                    @endif
                 </div>
                 <div class="box">
                     {{Form::select('body_id',
@@ -145,6 +147,17 @@
     </script>
     <script>
         CKEDITOR.replace( 'description' );
+    </script>
+    <script type="text/javascript">
+        $('#brand').change(function(){
+            $.ajax({
+                url: "{{ route('get_by_brand') }}?brand_id=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    $('#model').html(data.html);
+                }
+            });
+        });
     </script>
 @endsection
 <!-- ============================================================== -->
