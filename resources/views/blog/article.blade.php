@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-8 order-md-last ftco-animate">
                     <h2 class="mb-3">{{$post->title}}</h2>
-                    <div class="float-left"><img src="{{$post->getImage()}}"/></div>
+                    <div class="float-left"><img width="100%" src="{{$post->getImage()}}"/></div>
                     {!! $post->content !!}
                     <div class="tag-widget post-tag-container mb-5 mt-5">
                         <div class="tagcloud">
