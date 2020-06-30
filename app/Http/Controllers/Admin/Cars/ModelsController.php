@@ -16,7 +16,7 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        $models = Model::all();
+        $models = Model::with('brand')->get();
         return view('admin.cars.models.index', ['models' => $models, 'cid' => false]);
     }
 

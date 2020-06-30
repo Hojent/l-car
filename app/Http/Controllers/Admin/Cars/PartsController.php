@@ -16,7 +16,7 @@ class PartsController extends Controller
      */
     public function index()
     {
-        $parts = Part::all();
+        $parts = Part::with('group')->get();
         $groups =Group::pluck('group','id');
         return view('admin.cars.parts.index', [
             'parts' => $parts,
