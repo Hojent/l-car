@@ -92,6 +92,13 @@ class ModelsController extends Controller
         return redirect(route('models.index'));
     }
 
+    /**
+     * Creats Models list by Brand ID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function get_by_brand(Request $request)
     {
         //abort_unless(\Gate::allows('city_access'), 401);

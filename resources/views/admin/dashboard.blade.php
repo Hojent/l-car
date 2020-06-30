@@ -39,6 +39,7 @@
                 <h4 class="card-title m-b-0">Категории запчастей</h4>
             </div>
             <ul class="list-style-none">
+                <!-- parts links -->
                 <li class="d-flex no-block card-body border-top">
                     <i class="fa fa-check-circle w-30px m-t-5"></i>
                     <div>
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                 </li>
-
+                <!-- end parts links -->
             </ul>
         </div>
     </div>
