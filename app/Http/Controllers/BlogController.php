@@ -10,7 +10,7 @@ use App\Tag;
 class BlogController extends Controller
 
 {
-    const BLOG_PAGES = 10;
+    const BLOG_PAGES = 2;
     /**
      * Display a listing of the resource.
      *

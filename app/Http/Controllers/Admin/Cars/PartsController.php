@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class PartsController extends Controller
 {
+    const PARTS_PAGES = 4;
     /**
      * Display a listing of the resource.
      * @var integer $gid - group ID
@@ -16,7 +17,7 @@ class PartsController extends Controller
      */
     public function index()
     {
-        $parts = Part::with('group')->get();
+        $parts = Part::with('group')->paginate(self::PARTS_PAGES);
         $groups =Group::pluck('group','id');
         return view('admin.cars.parts.index', [
             'parts' => $parts,
@@ -87,14 +88,5 @@ class PartsController extends Controller
     }
 
 
-    public function group($group_id)
-    {
-        $parts = Part::where('group_id', '=', $group_id)->get();
-        $groupTitle = $parts->first()->getGroup() ?? 'empty';
-        return view('admin.cars.parts.index', [
-            'parts' => $parts,
-            'gid' => $group_id,
-            'groupTitle' => $groupTitle,
-        ]);
-    }
+
 }

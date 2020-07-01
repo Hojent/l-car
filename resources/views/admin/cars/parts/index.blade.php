@@ -8,13 +8,35 @@
             <div class="card">
                 <div class="card-body ">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-2">
                         <h4 class="card-title m-b-0">
                             @lang('headers.index_parts'):
                             @if ($gid)
                                 {{$groupTitle}}
                             @endif
                         </h4>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ Form::open([
+                            'route' => ['parts.index'],
+                            'method' => 'GET',
+                             ]) }}
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    {{Form::select('group_id',
+                                    $groups, null,
+                                    ['class' => 'select2 form-control custom-select',
+                                    'style' => 'width: 100%; height:36px;',
+                                    'placeholder' => 'Выберите категорию',
+                                    'id' => 'group'
+                                     ])
+                                     }}
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="submit" class="btn btn-info" value="filter" />
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
                         </div>
                         <div class="col-sm-6">
                         <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalAdd">
@@ -54,13 +76,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12 dataTables_paginate paging_simple_numbers">
+                                 {{ $parts->links('vendor.pagination.admin') }}
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <!-- BEGIN MODAL -->
+
 
     <!-- Modal Add -->
     @include('partials.new-part')
@@ -71,7 +100,12 @@
 @section('script')
     @parent
     <script>
-       $('#zero_config').DataTable();
+       $('#zero_config').DataTable({
+           "bPaginate": false,
+           "info": false,
+           "searching": false
+       }
+       );
     </script>
 @endsection
 <!-- ============================================================== -->
