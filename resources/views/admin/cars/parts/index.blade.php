@@ -24,11 +24,11 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     {{Form::select('group_id',
-                                    $groups, null,
+                                    $groups, request()->get('group_id'),
                                     ['class' => 'select2 form-control custom-select',
                                     'style' => 'width: 100%; height:36px;',
                                     'placeholder' => 'Выберите категорию',
-                                    'id' => 'group'
+                                    'id' => 'group',
                                      ])
                                      }}
                                 </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 dataTables_paginate paging_simple_numbers">
-                                 {{ $parts->links('vendor.pagination.admin') }}
+                                {{ $parts->links('vendor.pagination.admin') }}
                             </div>
                         </div>
                     </div>
