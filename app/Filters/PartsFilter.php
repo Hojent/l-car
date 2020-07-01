@@ -8,46 +8,20 @@
 
 namespace App\Filters;
 
+use App\Filters\AbstractFilter;
 
-class PartsFilter
+
+class PartsFilter extends AbstractFilter
 {
-    protected $builder;
-    protected $request;
-
-    public function __construct($builder, $request)
-    {
-        $this->builder =  $builder;
-        $this->request = $request;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function apply()
-    {
-       foreach ($this->filters() as $filter => $value ) {
-           if (method_exists($this, $filter)) {
-               $this->$filter($value);
-           }
-       }
-        return $this->builder;
-    }
-
-    /**
+        /**
      * @return mixed
      */
     public function group_id($value)
     {
-        $this->builder->where('group_id', $value)->get();
+        $this->builder->where('group_id', $value);
 
         return $this->builder;
     }
 
-    /**
-     * @return mixed
-     */
-    public function filters()  //вернет динамический список всех доступных фильтров
-    {
-        return $this->request->all();
-    }
+
 }
