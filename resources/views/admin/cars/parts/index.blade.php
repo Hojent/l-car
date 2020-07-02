@@ -29,8 +29,7 @@
                                     'style' => 'width: 100%; height:36px;',
                                     'placeholder' => 'Выберите категорию',
                                     'id' => 'group',
-                                     ])
-                                     }}
+                                     ])}}
                                 </div>
                                 <div class="col-sm-4">
                                     <input type="submit" class="btn btn-info" value="filter" />
@@ -76,11 +75,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row">
+{{--                        <div class="row">
                             <div class="col-sm-12 dataTables_paginate paging_simple_numbers">
                                 {{ $parts->links('vendor.pagination.admin') }}
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
 
                 </div>
@@ -101,7 +100,7 @@
     @parent
     <script>
        $('#zero_config').DataTable({
-           "bPaginate": false,
+           "bPaginate": true,
            "info": false,
            "searching": false
        }

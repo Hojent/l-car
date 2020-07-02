@@ -17,12 +17,13 @@ class PartsController extends Controller
      * @var integer $gid - group ID
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, PartsFilter $filters)
     {
-        $parts = Part::with('group');
-        $parts = (new PartsFilter($parts, $request))->apply()
-            ->paginate(self::PARTS_PAGES)
-            ->appends('group_id', $request->get('group_id'));
+        //$parts = Part::with('group');
+        $parts = Part::with('group')->filter($filters)    //call scope method scopeFiter() of the Part model
+            ->get();
+            //->paginate(self::PARTS_PAGES)
+            //->appends('group_id', $request->get('group_id'));
 
         $groups = Group::pluck('group', 'id');
         return view('admin.cars.parts.index', [

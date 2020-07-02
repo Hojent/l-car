@@ -8,23 +8,24 @@
 
 namespace App\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 abstract class AbstractFilter
 {
-    protected $builder;
     protected $request;
 
-    public function __construct($builder, $request)
+    public function __construct(Request $request)
     {
-        $this->builder =  $builder;
         $this->request = $request;
     }
 
     /**
      * @return mixed
      */
-    public function apply()
+    public function apply(Builder $builder)
     {
+       $this->builder = $builder;
        foreach ($this->filters() as $filter => $value ) {
            if (method_exists($this, $filter)) {
                $this->$filter($value);

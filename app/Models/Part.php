@@ -51,4 +51,12 @@ class Part extends Model
         ];
     }
 
+    /**
+     *Query constraint
+     */
+    public function scopeFilter($builder, $filters)
+    {
+        return $filters->apply($builder);
+    }
+
 }
