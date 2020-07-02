@@ -21,7 +21,7 @@ class ComplectsController extends Controller
      */
     public function index()
     {
-        $complects = Complect::all();
+        $complects = Complect::with(['brand','model', 'volume', 'motor', 'body', 'year'])->get();
         return view ('admin.cars.complects.index', [
             'complects' => $complects,
             'cid' => false
