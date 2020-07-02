@@ -16,7 +16,7 @@
                             @endif
                         </h4>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             {{ Form::open([
                             'route' => ['parts.index'],
                             'method' => 'GET',
@@ -31,16 +31,27 @@
                                     'id' => 'group',
                                      ])}}
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="submit" class="btn btn-info" value="filter" />
+                                <div class="col-sm-2">
+                                    <input type="submit" class="btn btn-info" value="Выбрать" />
+                                </div>
+                                <div class="col-sm-2">
+                                    {{Form::open([
+                                           'route'=>['parts.index'],
+                                            'method'=>'GET',
+                                            'group_id' => '1'
+                                            ])}}
+                                    <input type="submit" class="btn btn-primary" value="Очистить"  onclick="
+                                    getElementsByName('group_id')[0].remove()
+                                        ">
+                                    {{Form::close()}}
                                 </div>
                             </div>
                             {!! Form::close() !!}
                         </div>
-                        <div class="col-sm-6">
-                        <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalAdd">
-                            @lang('headers.add_part')
-                        </button>
+                        <div class="col-sm-5">
+                        <input type="button" class="btn btn-success" data-toggle="modal"
+                               data-target="#modalAdd" value="@lang('headers.add_part')" />
+
                         </div>
                     </div>
                     <div class="table-responsive">
