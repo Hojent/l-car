@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Post;
+use App\Models\Brand;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         {
             $view->with('payLinks', Post::getFooterLinks(1));
             $view->with('welinks', Post::getFooterLinks(4));
-        });
+        });		
+		
+		
     }
 }

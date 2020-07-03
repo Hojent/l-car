@@ -34,8 +34,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/models', 'Cars\ModelsController');
     Route::get('/models/edit/get_by_brand', 'Cars\ModelsController@get_by_brand')->name('get_by_brand');
     Route::resource('/complects', 'Cars\ComplectsController');
+    Route::get('/brand/{brand_id}', 'Cars\ComplectsController@index')->name('complect.brand');
     Route::resource('/parts', 'Cars\PartsController');
-    Route::get('/group/{gid}', 'Cars\PartsController@group')->name('group');
+    //Route::get('/group/{gid}', 'Cars\PartsController@group')->name('group');
 //blog part
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');

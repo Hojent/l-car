@@ -19,9 +19,14 @@ class ComplectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($brandId = 0)
     {
-        $complects = Complect::with(['brand','model', 'volume', 'motor', 'body', 'year'])->get();
+
+        $complects = Complect::with(['brand','model', 'volume', 'motor', 'body', 'year']);
+        if($brandId != 0) {
+            $complects = $complects->where('brand_id', $brandId);
+        }
+         $complects = $complects->get();
         return view ('admin.cars.complects.index', [
             'complects' => $complects,
             'cid' => false

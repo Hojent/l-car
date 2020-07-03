@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Models\Brand;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,10 @@ class AdminServiceProvider extends ServiceProvider
         view()->composer('admin.layout', function($view)
         {
             $view->with('profile', Auth::user());
+        });
+		view()->composer('admin._sidebar', function($view)
+        {
+            $view->with('brandLinks', Brand::all());           
         });
 
     }

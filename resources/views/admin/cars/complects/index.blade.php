@@ -7,19 +7,30 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title m-b-0">
-                        @lang('messages.brand'):
-                        @if ($cid)
-                        {{$brandTitle}}
-                        @endif
-                    </h4>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h4 class="card-title m-b-0">
+                                @lang('headers.index_complects'):
+                            </h4>
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="{{route('complects.create')}}" class="btn btn-sm btn-success")>
+                                @lang('headers.add_complect')
+                            </a>
+                        </div>
+                        <div class="col-sm-5">
+
+
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <div class="row">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th>Название</th>
-                                    <th>Марка\Модель</th>
+                                    <th>Характеристики</th>
                                     <th title="Действие">Действие</th>
                                 </tr>
                                 </thead>
@@ -59,11 +70,6 @@
                             </table>
                         </div>
                     </div>
-                    <div>
-                           <a href="{{route('complects.create')}}" class="btn btn-sm btn-info")>
-                               @lang('messages.add')
-                           </a>
-                    </div>
                 </div>
 
             </div>
@@ -74,7 +80,12 @@
 @section('script')
     @parent
     <script>
-       $('#zero_config').DataTable();
+        $('#zero_config').DataTable({
+                "bPaginate": true,
+                "info": false,
+                "searching": false
+            }
+        );
     </script>
 @endsection
 <!-- ============================================================== -->
