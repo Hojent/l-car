@@ -11,6 +11,7 @@ use App\Models\Dictes\Year;
 use App\Models\Dictes\Volume;
 use App\Models\Dictes\Body;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File;
 
 class ComplectsController extends Controller
 {
@@ -74,6 +75,7 @@ class ComplectsController extends Controller
         $complect->setMotor($request->get('motor_id'));
         $complect->setVolume($request->get('volume_id'));
         $complect->setYear($request->get('year_id'));
+        $complect->uploadImage($request->file('images'));
         $complect->toggleStatus($request->get('status'));
         return redirect(route('complects.index'));
 
@@ -130,6 +132,7 @@ class ComplectsController extends Controller
         $complect->setVolume($request->get('volume_id'));
         $complect->setModel($request->get('model_id'));
         $complect->setBody($request->get('body_id'));
+        $complect->uploadImage($request->file('images'));
                 //$complect->setParts($request->get('parts'));
         $complect->toggleStatus($request->get('status'));
 

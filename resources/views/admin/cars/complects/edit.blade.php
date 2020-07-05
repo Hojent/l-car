@@ -130,10 +130,22 @@
 
             </div>
             <!--description  -->
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                 <textarea class="form-control" id="description" name="description">
                     {!! $complect->description !!}
                 </textarea>
+            </div>
+            <div class="col=sm-4">
+                <div class="box">
+                    <label for="color">Цвет</label>
+                    <input type="text" name="color" class="form-control" id="color" value="{{ $complect->color }}">
+                </div>
+                <div class="box">
+                    <label for="images">Главное фото</label>
+                    <input type="file" name="images" class="form-control" id="images" value="{{$complect->images}}">
+                    <img class="img-thumbnail" src="{{$complect->getImage()}}" width="200px" />
+                </div>
+
             </div>
         </div>
         <div>

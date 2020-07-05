@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>Название</th>
                                     <th>Характеристики</th>
+                                    <th>Запчасти</th>
                                     <th title="Действие">Действие</th>
                                 </tr>
                                 </thead>
@@ -39,8 +40,7 @@
                                     <tr>
                                         <td>
                                             <a href="{{route('complects.edit',$complect->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_complect')">{{$complect->title}}</a><br>
-                         <img width="150px" src="{{$complect->images}}">
-
+                         <img width="150px" src="{{$complect->getImage()}}">
                                         </td>
                                         <td>
                                             {{$complect->getBrand()}}/
@@ -52,6 +52,7 @@
                                             Кол-во дверей: {{$complect->doors}}<br>
                                             Цвет: {{$complect->color}}<br>
                                         </td>
+                                        <td><p>Автозапчасти и диски</p></td>
                                         <td>
                                             {{Form::open([
                                             'route'=>['complects.destroy',

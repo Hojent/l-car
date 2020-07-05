@@ -9,6 +9,7 @@ use App\Models\Dictes\Motor;
 use App\Models\Dictes\Volume;
 use App\Models\Dictes\Body;
 use App\Models\Dictes\Year;
+use Illuminate\Support\Facades\Storage;
 
 class Complect extends BaseModel
 {
@@ -206,6 +207,43 @@ class Complect extends BaseModel
         }
 
         return $this->setPublic();
+    }
+
+    public function remove()
+    {
+        $this->removeImage();
+        $this->delete();
+    }
+
+    public function removeImage()
+    {
+        if ($this->images != null) {
+            Storage::delete('/uploads/cars/' . $this->images);
+        }
+    }
+
+    public function uploadImage($image)
+    {
+        if ($image == null) {
+            return;
+        }
+        Storage::delete('uploads/cars' . $this->images);
+        $this->removeImage();
+        $filename = 'car' . $this->id . '.' . $image->extension();
+        $image->storeAs('uploads/cars/', $filename);
+        $this->images = $filename;
+        $this->save();
+    }
+
+    public function getImage()
+    {
+        if ($this->images == null) {
+            return '/uploads/no-image.gif';
+        }
+        else {
+            return '/uploads/cars/'.$this->images;
+        }
+
     }
 
     /**

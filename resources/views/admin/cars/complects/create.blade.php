@@ -118,10 +118,20 @@
                 </div>
 
             </div>
-            <!--description  -->
-            <div class="col-sm-9">
+                      <!--description  -->
+            <div class="col-sm-6">
                 <textarea class="form-control" id="description" name="description" value="{{old('description')}}">Разместите здесь краткое описание машины. Это может быть любой текст. Какие-то особенности, откуда прибыла машина, ее общее состояние, нюансы кузова, и т.д.
                 </textarea>
+            </div>
+            <div class="col=sm-3">
+                <div class="box">
+                    <label for="color">Цвет</label>
+                    <input type="text" name="color" class="form-control" id="color" value="{{old('color')}}">
+                </div>
+                <div class="box">
+                    <label for="images">Главное фото</label>
+                    <input type="file" name="images" class="form-control" id="images" value="{{old('images')}}">
+                </div>
             </div>
         </div>
         <div>
