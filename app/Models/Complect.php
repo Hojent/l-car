@@ -246,6 +246,14 @@ class Complect extends BaseModel
 
     }
 
+    public function isStatus($value)
+    {
+        if ($value == null) {
+            return null;
+        }
+        return true;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

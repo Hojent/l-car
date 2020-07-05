@@ -32,6 +32,7 @@
                                     <th>Название</th>
                                     <th>Характеристики</th>
                                     <th>Запчасти</th>
+                                    <th>Статус</th>
                                     <th title="Действие">Действие</th>
                                 </tr>
                                 </thead>
@@ -52,7 +53,17 @@
                                             Кол-во дверей: {{$complect->doors}}<br>
                                             Цвет: {{$complect->color}}<br>
                                         </td>
-                                        <td><p>Автозапчасти и диски</p></td>
+                                        <td><p>Автозапчасти и диски</p>
+                                            <p>Запчасти (общее кол-во):<br>
+                                                Диски:</p>
+                                        </td>
+                                        <td>
+                                            @if ($complect->isStatus($complect->status))
+                                                <i class="mdi mdi-eye float-left" title="опубликовано"></i>
+                                            @else
+                                                <i class="mdi mdi-eye-off" title="скрыто"></i>
+                                            @endif
+                                        </td>
                                         <td>
                                             {{Form::open([
                                             'route'=>['complects.destroy',
@@ -64,6 +75,7 @@
                                                 onclick="return confirm('удалить машину?')" type="submit"> <i class="mdi mdi-delete fa-2x "></i>
                                             </button>
                                             {{Form::close()}}
+
                                         </td>
                                     </tr>
                                 @endforeach
