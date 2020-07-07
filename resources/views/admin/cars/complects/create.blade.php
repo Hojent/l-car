@@ -26,9 +26,6 @@
                 </div>
             </div>
             <div class="col-sm-6">
-
-                   file
-
             </div>
         </div>
         <!--------- end checkboxes -->

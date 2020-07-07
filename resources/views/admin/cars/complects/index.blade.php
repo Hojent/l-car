@@ -53,7 +53,7 @@
                                             Кол-во дверей: {{$complect->doors}}<br>
                                             Цвет: {{$complect->color}}<br>
                                         </td>
-                                        <td><p>Автозапчасти и диски</p>
+                                        <td><p><a href="{{route('complects.show',$complect)}}">Автозапчасти и диски</a></p>
                                             <p>Запчасти (общее кол-во):<br>
                                                 Диски:</p>
                                         </td>

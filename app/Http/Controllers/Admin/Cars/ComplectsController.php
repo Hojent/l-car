@@ -10,6 +10,8 @@ use App\Models\Dictes\Motor;
 use App\Models\Dictes\Year;
 use App\Models\Dictes\Volume;
 use App\Models\Dictes\Body;
+use App\Models\Part;
+use App\Models\Dictes\Group;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File;
 
@@ -23,12 +25,12 @@ class ComplectsController extends Controller
     public function index($brandId = 0)
     {
 
-        $complects = Complect::with(['brand','model', 'volume', 'motor', 'body', 'year']);
-        if($brandId != 0) {
+        $complects = Complect::with(['brand', 'model', 'volume', 'motor', 'body', 'year']);
+        if ($brandId != 0) {
             $complects = $complects->where('brand_id', $brandId);
         }
-         $complects = $complects->get();
-        return view ('admin.cars.complects.index', [
+        $complects = $complects->get();
+        return view('admin.cars.complects.index', [
             'complects' => $complects,
             'cid' => false
         ]);
@@ -47,8 +49,8 @@ class ComplectsController extends Controller
         $motors = Motor::pluck('motor', 'id');
         $bodies = Body::pluck('body', 'id');
         $volumes = Volume::pluck('title', 'id');
-        $doors = array(2=>2, 3=>3, 4=>4, 5=>5); //array for select tag
-        return view ('admin.cars.complects.create', compact(
+        $doors = array(2 => 2, 3 => 3, 4 => 4, 5 => 5); //array for select tag
+        return view('admin.cars.complects.create', compact(
             'brands',
             'years',
             'motors',
@@ -60,7 +62,7 @@ class ComplectsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -84,7 +86,7 @@ class ComplectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Complect  $complect
+     * @param  \App\Models\Complect $complect
      * @return \Illuminate\Http\Response
      */
     public function edit(Complect $complect)
@@ -94,7 +96,7 @@ class ComplectsController extends Controller
         $motors = Motor::pluck('motor', 'id');
         $bodies = Body::pluck('body', 'id');
         $volumes = Volume::pluck('title', 'id');
-        $doors = array(2=>2, 3=>3, 4=>4, 5=>5); //array for select tag
+        $doors = array(2 => 2, 3 => 3, 4 => 4, 5 => 5); //array for select tag
         //real data
         //$carParts = $complect->parts->pluck('id')->all();
         $brand = $complect->getBrandID();
@@ -105,24 +107,24 @@ class ComplectsController extends Controller
         $body = $complect->getBodyID();
         $volume = $complect->getVolumeID();
         $door = $complect->doors;
-        return view ('admin.cars.complects.edit', compact(
-   'complect',
-   'brands','models', 'years', 'motors', 'bodies','volumes','doors',
-      'brand', 'model', 'year', 'motor', 'body', 'volume', 'door'
-            ));
+        return view('admin.cars.complects.edit', compact(
+            'complect',
+            'brands', 'models', 'years', 'motors', 'bodies', 'volumes', 'doors',
+            'brand', 'model', 'year', 'motor', 'body', 'volume', 'door'
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Complect  $complect
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Complect $complect
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Complect $complect)
     {
         $this->validate($request, [
-            'title'	=>	'required',
+            'title' => 'required',
         ]);
         $complect->update($request->all());
         //$complect->uploadMainImage($request->file('images'));
@@ -133,7 +135,7 @@ class ComplectsController extends Controller
         $complect->setModel($request->get('model_id'));
         $complect->setBody($request->get('body_id'));
         $complect->uploadImage($request->file('images'));
-                //$complect->setParts($request->get('parts'));
+        //$complect->setParts($request->get('parts'));
         $complect->toggleStatus($request->get('status'));
 
         return redirect(route('complects.index'));
@@ -142,7 +144,7 @@ class ComplectsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Complect  $complect
+     * @param  \App\Models\Complect $complect
      * @return \Illuminate\Http\Response
      */
     public function destroy(Complect $complect)
@@ -150,4 +152,26 @@ class ComplectsController extends Controller
         $complect->delete();
         return redirect(route('complects.index'));
     }
+
+    //autoparts
+
+    /**
+     * Add parts to complect
+     * @param  \App\Models\Complect $complect
+     * @return \Illuminate\Http\Response
+     *
+     */
+
+    public function show(Complect $complect)
+    {
+        $parts = Part::pluck('title', 'id');
+        $groups = Group::pluck('group', 'id');
+        $selectedparts = $complect->parts->pluck('id')->all();
+        return view('admin.cars.complects.show', compact('complect',
+            'parts',
+            'selectedparts',
+            'groups'));
+    }
+
+
 }

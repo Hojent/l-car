@@ -93,4 +93,28 @@ class PartsController extends Controller
         $part->delete();
         return redirect(route('parts.index'));
     }
+
+
+    /**
+     * Creats Parts list by Group ID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_by_group(Request $request)
+    {
+        //abort_unless(\Gate::allows('city_access'), 401);
+        if (!$request->group_id) {
+            $html = '<option value="">Категория запчастей</option>';
+        } else {
+            $html = '';
+            $parts = Part::where('group_id', $request->group_id)->get();
+            foreach ($parts as $part) {
+                $html .= '<option value="'.$part->id.'">'.$part->title.'</option>';
+            }
+        }
+
+        return response()->json(['html' => $html]);
+    }
 }

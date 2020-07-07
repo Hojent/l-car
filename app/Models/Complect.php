@@ -259,12 +259,12 @@ class Complect extends BaseModel
      */
     public function parts()
     {
-      /*  return $this->belongsToMany(
+        return $this->belongsToMany(
             Part::class,
-            'complect_parts',
+            'complects_parts',
             'complect_id',
             'part_id'
-        );*/
+        );
     }
 
 }
