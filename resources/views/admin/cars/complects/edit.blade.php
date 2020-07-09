@@ -153,11 +153,13 @@
             <div class="col-sm-3">
                 <h3>Перечень запчастей</h3>
                 <p>Категории:</p>
+                <p>Редактировать цены<br>
+                (переход на другую страницу)</p>
 
             </div>
             <div class="col-sm-9">
                 @foreach($complect->parts as $part)
-                    {{$part->title}} - {{$part->pivot->price}} <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
+                    {{$part->title}} - {{$part->pivot->price}}$ <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
                 @endforeach
             </div>
         </div>

@@ -111,11 +111,18 @@ class ComplectsController extends Controller
         //$parts = Part::pluck('title', 'id');
         $parts = Part::with('group')->get();
         $groups = Group::all();
-        $selectedparts = $complect->getParts();
+        $selectedparts = $complect->parts();
+        $group_parts = [];
+        foreach ($groups as $group) {
+            $parts_by_group = $parts->where('group_id', '=', $group->id);
+            $group_parts [] = [$group->group, $parts_by_group];
+        }
+        //var_dump($selectedparts);
+        //dd($group_parts);
         return view('admin.cars.complects.edit', compact(
             'complect',
             'brands', 'models', 'years', 'motors', 'bodies', 'volumes', 'doors', 'parts', 'groups',
-            'brand', 'model', 'year', 'motor', 'body', 'volume', 'door', 'selectedparts'
+            'brand', 'model', 'year', 'motor', 'body', 'volume', 'door', 'selectedparts', 'group_parts'
         ));
     }
 
@@ -142,7 +149,7 @@ class ComplectsController extends Controller
         $complect->uploadImage($request->file('images'));
         $complect->toggleStatus($request->get('status'));
 
-        return redirect(route('complects.edit'));
+        return redirect(route('complects.edit', $complect->id));
     }
 
     /**

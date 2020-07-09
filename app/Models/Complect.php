@@ -273,13 +273,13 @@ class Complect extends BaseModel
     }
 
 
-    public function setParts(array $ids)
+    public function setParts(? array $ids)
     {
 
         if ($ids == null) {
             return;
         }
-        $this->parts()->sync($ids);
+        $this->parts()->attach($ids);
 
     }
 
