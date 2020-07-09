@@ -148,18 +148,31 @@
 
             </div>
         </div>
-
+      <div class="card card-body">
         <div class="form-group row">
             <div class="col-sm-3">
                 <h3>Перечень запчастей</h3>
                 <p>Категории:</p>
-                @foreach($complect->parts as $part)
-        {{$part->title}} - {{$part->pivot->price}} / {{$part->group->group}}<br>
-                @endforeach
 
             </div>
             <div class="col-sm-9">
+                @foreach($complect->parts as $part)
+                    {{$part->title}} - {{$part->pivot->price}} <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
+                @endforeach
+            </div>
+        </div>
+      </div>
+        <div class="card card-body">
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <h3>Добавить запчасть</h3>
 
+                </div>
+                <div class="col-sm-9">
+                    @foreach($parts as $part)
+                        <input type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}} <br>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div>
@@ -168,6 +181,7 @@
                 @lang('messages.save')
             </button>
         </div>
+
 
     </div>
     {!! Form::close() !!}

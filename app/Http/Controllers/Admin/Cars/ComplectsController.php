@@ -108,7 +108,8 @@ class ComplectsController extends Controller
         $volume = $complect->getVolumeID();
         $door = $complect->doors;
         // pivot data
-        $parts = Part::pluck('title', 'id');
+        //$parts = Part::pluck('title', 'id');
+        $parts = Part::all();
         $groups = Group::pluck('group', 'id');
         $selectedparts = $complect->getParts();
         return view('admin.cars.complects.edit', compact(
@@ -127,6 +128,7 @@ class ComplectsController extends Controller
      */
     public function update(Request $request, Complect $complect)
     {
+        var_dump($request->get('parts'));
         $this->validate($request, [
             'title' => 'required',
         ]);
@@ -137,6 +139,7 @@ class ComplectsController extends Controller
         $complect->setVolume($request->get('volume_id'));
         $complect->setModel($request->get('model_id'));
         $complect->setBody($request->get('body_id'));
+        $complect->setParts($request->get('parts'));
         $complect->uploadImage($request->file('images'));
         $complect->toggleStatus($request->get('status'));
 

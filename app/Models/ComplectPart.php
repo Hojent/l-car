@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ComplectPart extends Model
+
+class ComplectPart extends Pivot
 {
-    //
+    public $incrementing = true;
+
+    public function getGroups ()
+    {
+        return;
+    }
 }

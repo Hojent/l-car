@@ -10,6 +10,8 @@ use App\Models\Dictes\Volume;
 use App\Models\Dictes\Body;
 use App\Models\Dictes\Year;
 use Illuminate\Support\Facades\Storage;
+use App\Models\ComplectPart;
+
 
 class Complect extends BaseModel
 {
@@ -30,7 +32,7 @@ class Complect extends BaseModel
             'complect_part',
             'complect_id',
             'part_id'
-        )->withPivot('price','image');
+        )->using(ComplectPart::class)->withPivot('price','image');
     }
 
      /**
@@ -271,14 +273,14 @@ class Complect extends BaseModel
     }
 
 
-    public function setParts(Complect $complect, $parts)
+    public function setParts(array $ids)
     {
 
         if ($ids == null) {
             return;
         }
-        $complect->parts()->sync($ids);
-        //$this->parts()->attach($ids);
+        $this->parts()->sync($ids);
+
     }
 
     public function getParts()
@@ -290,8 +292,8 @@ class Complect extends BaseModel
 
     public function getPartsGroups()
     {
-        $parts = $this->parts()->groupBy('group_id');
-        dd($parts);
+        //$parts = $this->parts()->groupBy('group_id');
+
     }
 
 }

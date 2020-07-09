@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Dictes\Group;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\ComplectPart;
 
 
 class Part extends Model
@@ -19,7 +20,7 @@ class Part extends Model
             'complect_part',
             'part_id',
             'complect_id'
-        );
+        )->using(ComplectPart::class)->withPivot('price', 'image');
     }
 
     public function group()
