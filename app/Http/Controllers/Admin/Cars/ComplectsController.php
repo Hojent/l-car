@@ -109,8 +109,8 @@ class ComplectsController extends Controller
         $door = $complect->doors;
         // pivot data
         //$parts = Part::pluck('title', 'id');
-        $parts = Part::all();
-        $groups = Group::pluck('group', 'id');
+        $parts = Part::with('group')->get();
+        $groups = Group::all();
         $selectedparts = $complect->getParts();
         return view('admin.cars.complects.edit', compact(
             'complect',
@@ -128,7 +128,6 @@ class ComplectsController extends Controller
      */
     public function update(Request $request, Complect $complect)
     {
-        var_dump($request->get('parts'));
         $this->validate($request, [
             'title' => 'required',
         ]);
@@ -143,7 +142,7 @@ class ComplectsController extends Controller
         $complect->uploadImage($request->file('images'));
         $complect->toggleStatus($request->get('status'));
 
-        return redirect(route('complects.index'));
+        return redirect(route('complects.edit'));
     }
 
     /**
@@ -157,44 +156,6 @@ class ComplectsController extends Controller
         $complect->delete();
         return redirect(route('complects.index'));
     }
-
-    //autoparts
-
-    /**
-     * Add parts to complect
-     * @param  \App\Models\Complect $complect
-     * @return \Illuminate\Http\Response
-     *
-     */
-
-    public function show(Complect $complect)
-    {
-        $parts = Part::pluck('title', 'id');
-        $groups = Group::pluck('group', 'id');
-        $selectedparts = $complect->parts->pluck('id')->all();
-        return view('admin.cars.complects.show', compact('complect',
-            'parts',
-            'selectedparts',
-            'groups'));
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Complect  $complect
-     * @return \Illuminate\Http\Response
-     */
-
-    public function addParts(Request $request, Complect $complect)
-    {
-        $complect->update($request->all());
-        $complect->setParts($request->get('part_id'));
-        return redirect(route('complects.show', $complect->id));
-
-    }
-
 
 
 }

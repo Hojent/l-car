@@ -169,14 +169,29 @@
 
                 </div>
                 <div class="col-sm-9">
-                    @foreach($parts as $part)
-                        <input type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}} <br>
+                  @foreach ($groups as $group)
+                     <div><h4>{{$group->group}}</h4></div>
+                     <div class="row">
+
+                     @foreach($parts->where('group_id', $group->id) as $part)
+                          @if ($loop->index == 0 OR $loop->index%5 == 0)
+                              <div class="col-sm-3">
+                          @endif
+                             <input type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}}<br>
+                          @if ($loop->iteration%5 == 0 OR $loop->last)
+                            </div>
+                          @endif
+                      @endforeach
+
+                    </div>
+                      <hr>
                     @endforeach
+
                 </div>
             </div>
         </div>
         <div>
-            <a class="btn btn-info" href="{{ route('complects.index') }}">@lang('messages.back')</a>
+            <a class="btn btn-info" href="{{ route('complects.index') }}">@lang('messages.close')</a>
             <button class="btn btn-success pull-right">
                 @lang('messages.save')
             </button>
