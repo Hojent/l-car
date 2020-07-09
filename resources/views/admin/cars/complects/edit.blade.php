@@ -148,6 +148,20 @@
 
             </div>
         </div>
+
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <h3>Перечень запчастей</h3>
+                <p>Категории:</p>
+                @foreach($complect->parts as $part)
+        {{$part->title}} - {{$part->pivot->price}} / {{$part->group->group}}<br>
+                @endforeach
+
+            </div>
+            <div class="col-sm-9">
+
+            </div>
+        </div>
         <div>
             <a class="btn btn-info" href="{{ route('complects.index') }}">@lang('messages.back')</a>
             <button class="btn btn-success pull-right">

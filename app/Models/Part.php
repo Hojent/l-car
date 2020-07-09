@@ -13,6 +13,15 @@ class Part extends Model
 
     protected $fillable = ['title'];
 
+    public function complects () {
+        return $this->belongsToMany(
+            Complect::class,
+            'complect_part',
+            'part_id',
+            'complect_id'
+        );
+    }
+
     public function group()
     {
         return $this->belongsTo(Group::class);
@@ -58,5 +67,7 @@ class Part extends Model
     {
         return $filters->apply($builder);
     }
+
+
 
 }

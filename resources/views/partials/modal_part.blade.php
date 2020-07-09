@@ -3,14 +3,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    @lang('headers.add_part')
-                    {{$complect->title}}
+                    Добавить запчасть
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => 'complects.store', 'data-remote' => 'true']) !!}
+            {!! Form::open([
+            'route' => ['add_parts', $complect],
+            'method' => 'put',
+            ]) !!}
             <div class="modal-body">
                 <div class="card-body">
                     <div class="form-group row">

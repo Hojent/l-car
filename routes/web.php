@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/models', 'Cars\ModelsController');
     Route::resource('/parts', 'Cars\PartsController');
     Route::resource('/complects', 'Cars\ComplectsController');
+    //Route::get('/complects/{id}/pivot', 'Cars\ComplectsController@show')->name('complect.pivot');
+    //Route::post('/complects/{complect_id}/edit/','Cars\ComplectsController@addParts')->name('add_parts');
     Route::get('/brand/{brand_id}', 'Cars\ComplectsController@index')->name('complect.brand');
     Route::get('/models/edit/get_by_brand', 'Cars\ModelsController@get_by_brand')->name('get_by_brand');
     Route::get('/parts/edit/get_by_group', 'Cars\PartsController@get_by_group')->name('get_by_group');

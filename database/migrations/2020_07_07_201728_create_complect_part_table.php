@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComplectsPartsTable extends Migration
+class CreateComplectPartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateComplectsPartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('complects_parts', function (Blueprint $table) {
+        Schema::create('complect_part', function (Blueprint $table) {
             $table->id();
             $table->integer('complect_id');
             $table->integer('part_id');
+            $table->decimal('price',6,2);
             $table->string('image');
-            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateComplectsPartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complects_parts');
+        Schema::dropIfExists('complect_part');
     }
 }

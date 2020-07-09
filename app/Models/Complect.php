@@ -21,6 +21,19 @@ class Complect extends BaseModel
     protected $fillable = ['title', 'description', 'doors', 'color'];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function parts()
+    {
+        return $this->belongsToMany(
+            Part::class,
+            'complect_part',
+            'complect_id',
+            'part_id'
+        )->withPivot('price','image');
+    }
+
+     /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
@@ -33,6 +46,9 @@ class Complect extends BaseModel
             ]
         ];
     }
+
+
+
 //Brand relations
     public function brand()
     {
@@ -254,17 +270,28 @@ class Complect extends BaseModel
         return true;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function parts()
+
+    public function setParts(Complect $complect, $parts)
     {
-        return $this->belongsToMany(
-            Part::class,
-            'complects_parts',
-            'complect_id',
-            'part_id'
-        );
+
+        if ($ids == null) {
+            return;
+        }
+        $complect->parts()->sync($ids);
+        //$this->parts()->attach($ids);
+    }
+
+    public function getParts()
+    {
+        return (!$this->parts->isEmpty())
+            ? implode(', ', $this->parts->pluck('title')->all())
+            : ' - ';
+    }
+
+    public function getPartsGroups()
+    {
+        $parts = $this->parts()->groupBy('group_id');
+        dd($parts);
     }
 
 }

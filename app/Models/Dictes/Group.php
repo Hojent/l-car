@@ -30,7 +30,8 @@ class Group extends Model
         ];
     }
 
-    public function getGroupList () {
+    public function getGroupsList () {
+
         //
     }
 }
