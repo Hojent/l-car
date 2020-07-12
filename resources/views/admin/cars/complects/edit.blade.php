@@ -153,13 +153,53 @@
             <div class="col-sm-3">
                 <h3>Перечень запчастей</h3>
                 <p>Категории:</p>
-                <p>Редактировать цены<br>
-                (переход на другую страницу)</p>
-
+                <p><a href="#">Изменить цены</a></p>
             </div>
             <div class="col-sm-9">
                 @foreach($complect->parts as $part)
-                    {{$part->title}} - {{$part->pivot->price}}$ <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
+                    {{$part->title}} - {{$part->pivot->price}}$
+                    <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}"><span class="mdi mdi-pencil"></span></a>
+                    <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
+
+                    <!-- BEGIN MODAL -->
+                    <div class="modal fade" id="modal{{$part->id}}" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        {{$part->title}} {{$part->id}}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                {!! Form::open([
+                                'route' => ['complect.updateparts',$complect->id, $part->id],
+                                'method' => 'put'
+                                ]) !!}
+
+                                <div class="modal-body">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Цена</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="price" placeholder="" name="price" value="{{$part->pivot->price}}">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        @lang('messages.close')</button>
+                                    <button type="submit" class="btn btn-primary">@lang('messages.save')</button>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Add Category -->
                 @endforeach
             </div>
         </div>
@@ -173,11 +213,11 @@
                 <div class="col-sm-9">
                   @foreach ($groups as $group)
                      <div><h4>{{$group->group}}</h4></div>
-                     <div class="row">
+                     <div class="row  flex-wrap">
 
                      @foreach($parts->where('group_id', $group->id) as $part)
                           @if ($loop->index == 0 OR $loop->index%5 == 0)
-                              <div class="col-sm-3">
+                              <div class="col-sm-4 flex-column">
                           @endif
                              <input type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}}<br>
                           @if ($loop->iteration%5 == 0 OR $loop->last)
@@ -204,6 +244,7 @@
     {!! Form::close() !!}
 
     <!-- BEGIN MODAL -->
+
 
     <!-- Modal Add Category -->
 

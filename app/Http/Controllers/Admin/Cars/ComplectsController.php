@@ -164,5 +164,33 @@ class ComplectsController extends Controller
         return redirect(route('complects.index'));
     }
 
+    //complect parts update
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Complect $complect
+     * @return \Illuminate\Http\Response
+     */
+    public function editparts(Complect $complect)
+    {
+        $parts = $complect->parts();
+        return view('admin.cars.complects.list', compact(
+            'complect', 'parts'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Complect $complect
+     * @return \Illuminate\Http\Response
+     */
+    public function updateparts(Request $request, Complect $complect)
+    {
+
+        $complect->setPrice($request->get('id'), ['price' => $request->get('price')]);
+        return redirect(route('complect.editparts', $complect->id));
+    }
 }
+

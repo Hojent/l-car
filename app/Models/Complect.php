@@ -279,7 +279,8 @@ class Complect extends BaseModel
         if ($ids == null) {
             return;
         }
-        $this->parts()->attach($ids);
+
+        $this->parts()->sync($ids, false);
 
     }
 
@@ -295,5 +296,21 @@ class Complect extends BaseModel
         //$parts = $this->parts()->groupBy('group_id');
 
     }
+
+    //parts manager
+
+
+    public function setPrice($id, ? array $attributes)
+    {
+
+        if ($id == null) {
+            return;
+        }
+
+        $this->parts()->updateExistingPivot($id, $attributes);
+
+    }
+
+
 
 }
