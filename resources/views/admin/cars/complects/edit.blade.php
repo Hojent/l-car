@@ -4,13 +4,15 @@
 @endsection
 @section('content')
 
+    <div class="row">
+    <div class="col-sm-9">
     {{ Form::open([
         'route' => ['complects.update', $complect->id],
         'file' => 'true',
         'enctype' => 'multipart/form-data',
         'method' => 'put',
      ]) }}
-    <div class="card-body">
+
         <!--------- checkboxes -->
         <div class="row">
             <div class="form-group row col-sm-6">
@@ -148,70 +150,10 @@
 
             </div>
         </div>
-      <div class="card card-body">
-        <div class="form-group row">
-            <div class="col-sm-3">
-                <h3>Перечень запчастей</h3>
-                <p>Категории:</p>
-                <p><a href="#">Изменить цены</a></p>
-            </div>
-            <div class="col-sm-9">
-                @foreach($complect->parts as $part)
-                    {{$part->title}} - {{$part->pivot->price}}$
-                    <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}"><span class="mdi mdi-pencil"></span></a>
-                    <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a><br>
 
-                    <!-- BEGIN MODAL -->
-                    <div class="modal fade" id="modal{{$part->id}}" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        {{$part->title}} {{$part->id}}
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                {!! Form::open([
-                                'route' => ['complect.updateparts',$complect->id, $part->id],
-                                'method' => 'put'
-                                ]) !!}
-
-                                <div class="modal-body">
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 text-right control-label col-form-label">Цена</label>
-                                            <div class="col-sm-9">
-                                                <input type="hidden" name="part_id" value="{{$part->id}}">
-                                                <input type="text" class="form-control" id="price" placeholder="" name="price" value="{{$part->pivot->price}}">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        @lang('messages.close')</button>
-                                    <button type="submit" class="btn btn-primary">@lang('messages.save')</button>
-                                </div>
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal Add Category -->
-                @endforeach
-            </div>
-        </div>
-      </div>
-        <div class="card card-body">
-            <div class="form-group row">
-                <div class="col-sm-3">
+        <div class="row">
+                <div class="card card-body col-sm-12">
                     <h3>Добавить запчасть</h3>
-
-                </div>
-                <div class="col-sm-9">
                   @foreach ($groups as $group)
                      <div><h4>{{$group->group}}</h4></div>
                      <div class="row  flex-wrap">
@@ -231,7 +173,6 @@
                     @endforeach
 
                 </div>
-            </div>
         </div>
         <div>
             <a class="btn btn-info" href="{{ route('complects.index') }}">@lang('messages.close')</a>
@@ -239,10 +180,65 @@
                 @lang('messages.save')
             </button>
         </div>
-
-
-    </div>
     {!! Form::close() !!}
+    </div>
+        <div class="col-sm-3">
+            <div class="card card-body">
+                <div class="form-group">
+                      <h3>Перечень запчастей</h3>
+
+                        @foreach($complect->parts as $part)
+                           <p>{{$part->title}} - {{$part->pivot->price}}$
+                            <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}"><span class="mdi mdi-pencil"></span></a>
+                               <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a>
+                           </p>
+
+                            <!-- BEGIN MODAL -->
+                            <div class="modal fade" id="modal{{$part->id}}" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                {{$part->title}} {{$part->id}}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        {!! Form::open([
+                                        'route' => ['complect.updateparts',$complect->id, $part->id],
+                                        'method' => 'put'
+                                        ]) !!}
+                                        <div class="modal-body">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 text-right control-label col-form-label">Цена</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="price" placeholder="" name="price" value="{{$part->pivot->price}}">
+                                                        <input type="hidden" name="part_id" value="{{$part->id}}">{{$part->id}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                @lang('messages.close')</button>
+                                            <button type="submit" class="btn btn-primary">@lang('messages.save')</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Add Category -->
+                        @endforeach
+
+
+            </div>
+        </div>
+    </div>
+
 
     <!-- BEGIN MODAL -->
 

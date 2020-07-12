@@ -190,7 +190,7 @@ class ComplectsController extends Controller
     {
 
         $complect->setPrice($request->get('part_id'), ['price' => $request->get('price')]);
-        //dd($request->get('part_id').'--'.$request->get('price'));
+
         return redirect(route('complects.edit', $complect->id));
     }
 }
