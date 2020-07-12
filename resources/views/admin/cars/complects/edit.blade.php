@@ -183,6 +183,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 text-right control-label col-form-label">Цена</label>
                                             <div class="col-sm-9">
+                                                <input type="hidden" name="part_id" value="{{$part->id}}">
                                                 <input type="text" class="form-control" id="price" placeholder="" name="price" value="{{$part->pivot->price}}">
                                             </div>
                                         </div>

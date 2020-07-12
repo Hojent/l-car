@@ -175,7 +175,7 @@ class ComplectsController extends Controller
     public function editparts(Complect $complect)
     {
         $parts = $complect->parts();
-        return view('admin.cars.complects.list', compact(
+        return view('admin.cars.complects.editparts', compact(
             'complect', 'parts'));
     }
 
@@ -189,8 +189,9 @@ class ComplectsController extends Controller
     public function updateparts(Request $request, Complect $complect)
     {
 
-        $complect->setPrice($request->get('id'), ['price' => $request->get('price')]);
-        return redirect(route('complect.editparts', $complect->id));
+        $complect->setPrice($request->get('part_id'), ['price' => $request->get('price')]);
+        //dd($request->get('part_id').'--'.$request->get('price'));
+        return redirect(route('complects.edit', $complect->id));
     }
 }
 
