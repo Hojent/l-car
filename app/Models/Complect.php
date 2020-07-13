@@ -324,7 +324,8 @@ class Complect extends BaseModel
     public function getPivotImage($image)
     {
         if ($image == null) {
-            return '/uploads/no-image.gif';
+
+            return ;
         }
         else {
             return '/uploads/cars/'.$image;

@@ -178,8 +178,12 @@
                       <h3>Перечень запчастей</h3>
 
                         @foreach($complect->parts as $part)
-                           <p>{{$part->title}} - {{$part->pivot->price}}$
-                            <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}"><span class="mdi mdi-pencil"></span></a>
+                        <p>@if ($part->pivot->image)
+                              <img src="/assets/images/custom-select.png" />
+                           @endif
+                           {{$part->title}} - {{$part->pivot->price}}$
+                            <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}">
+                                <span class="mdi mdi-pencil"></span></a>
                                <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a>
                            </p>
 
@@ -208,7 +212,7 @@
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" id="price" placeholder=""
                                                                name="price" value="{{$part->pivot->price}}">
-                                                        <input type="file" name="image" value="{{$part->pivot->image}}">
+                                                        <input type="file" name="image">
                                                         <img src="{{$complect->getPivotImage($part->pivot->image)}}" width="150px">
                                                         <input type="hidden" name="part_id" value="{{$part->id}}">
                                                     </div>
