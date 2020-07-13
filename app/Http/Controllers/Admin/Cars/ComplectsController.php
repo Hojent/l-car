@@ -188,8 +188,14 @@ class ComplectsController extends Controller
      */
     public function updateparts(Request $request, Complect $complect)
     {
-
-        $complect->setPrice($request->get('part_id'), ['price' => $request->get('price')]);
+        $file = $request->file('image');
+        $price = $request->get('price');
+        $part_id = $request->get('part_id');
+        $image = $file ? $complect->uploadPivotImage($file,$part_id) : null;
+        $complect->setPrice($part_id, [
+            'price' => $price,
+            'image' => $image
+        ]);
 
         return redirect(route('complects.edit', $complect->id));
     }

@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-8">
     {{ Form::open([
         'route' => ['complects.update', $complect->id],
         'file' => 'true',
@@ -13,35 +13,25 @@
         'method' => 'put',
      ]) }}
 
-        <!--------- checkboxes -->
-        <div class="row">
-            <div class="form-group row col-sm-6">
-                <label class="col-md-2">@lang('messages.status')</label>
-                <div class="col-md-10">
-                    <div class="custom-control custom-checkbox mr-sm-2">
-                        {{Form::checkbox('status', '1', $complect->status, [
-                       'class'=>'custom-control-input',
-                       'id' => 'customControlAutosizing2',
-                       ])}}
-                        <label class="custom-control-label" for="customControlAutosizing2">
-                            @lang('messages.public')
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-
-                file
-
-            </div>
-        </div>
-        <!--------- end checkboxes -->
-        <!--title -->
         <div class="form-group row">
             <div class="col-sm-3">
-                <label for="title" class="text-right control-label col-form-label">
+                <div><label for="title" class="text-right control-label col-form-label">
                     @lang('messages.title')
-                </label>
+                    </label>
+                </div>
+                <div class="row"><label class="col-md-4">@lang('messages.status'):</label>
+                    <div class="col-md-8">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                            {{Form::checkbox('status', '1', $complect->status, [
+                           'class'=>'custom-control-input',
+                           'id' => 'customControlAutosizing2',
+                           ])}}
+                            <label class="custom-control-label" for="customControlAutosizing2">
+                                @lang('messages.public')
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="title"
@@ -182,7 +172,7 @@
         </div>
     {!! Form::close() !!}
     </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="card card-body">
                 <div class="form-group">
                       <h3>Перечень запчастей</h3>
@@ -199,7 +189,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                {{$part->title}} {{$part->id}}
+                                                {{$part->title}}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
@@ -207,6 +197,8 @@
                                         </div>
                                         {!! Form::open([
                                         'route' => ['complect.updateparts',$complect->id, $part->id],
+                                        'file' => 'true',
+                                        'enctype' => 'multipart/form-data',
                                         'method' => 'put'
                                         ]) !!}
                                         <div class="modal-body">
@@ -214,8 +206,11 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 text-right control-label col-form-label">Цена</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="price" placeholder="" name="price" value="{{$part->pivot->price}}">
-                                                        <input type="hidden" name="part_id" value="{{$part->id}}">{{$part->id}}
+                                                        <input type="text" class="form-control" id="price" placeholder=""
+                                                               name="price" value="{{$part->pivot->price}}">
+                                                        <input type="file" name="image" value="{{$part->pivot->image}}">
+                                                        <img src="{{$complect->getPivotImage($part->pivot->image)}}" width="150px">
+                                                        <input type="hidden" name="part_id" value="{{$part->id}}">
                                                     </div>
                                                 </div>
 

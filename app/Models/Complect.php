@@ -297,7 +297,7 @@ class Complect extends BaseModel
 
     }
 
-    //parts manager
+    //parts manager  PIVOT ------------------------
 
 
     public function setPrice($id, ? array $attributes)
@@ -311,6 +311,25 @@ class Complect extends BaseModel
 
     }
 
+    public function uploadPivotImage($image, $part_id)
+    {
+        if ($image == null) {
+            return;
+        }
+        $filename = 'car' . $this->id . '-part' .$part_id.   '.' . $image->extension();
+        $image->storeAs('uploads/cars/', $filename);
+        return $filename;
+    }
 
+    public function getPivotImage($image)
+    {
+        if ($image == null) {
+            return '/uploads/no-image.gif';
+        }
+        else {
+            return '/uploads/cars/'.$image;
+        }
+
+    }
 
 }
