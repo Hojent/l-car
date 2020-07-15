@@ -178,14 +178,27 @@
                       <h3>Перечень запчастей</h3>
 
                         @foreach($complect->parts as $part)
-                        <p>@if ($part->pivot->image)
+                        <div class="row">
+                            <div class="col-sm-8">
+                            @if ($part->pivot->image)
                               <img src="/assets/images/custom-select.png" />
                            @endif
                            {{$part->title}} - {{$part->pivot->price}}$
                             <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}">
                                 <span class="mdi mdi-pencil"></span></a>
-                               <a href="#" title="удалить" style="color: red;"><span class="mdi mdi-close-circle"> </span></a>
-                           </p>
+                            </div>
+                            <div class="col-sm-2">
+                            {{Form::open([
+                                            'route'=>['complect.deleteparts',
+                                                $complect->id, $part->id],
+                                             'method'=>'delete'
+                                             ])}}
+                            <button class="btn btn-link btn-sm"
+                                    title="@lang('messages.delete')"
+                                    onclick="return confirm('удалить {{$part->title}}?')" type="submit"> <span style="color: darkred;" class="mdi mdi-close-circle"> </span>
+                            </button>
+                            {{Form::close()}}
+                            </div>
 
                             <!-- BEGIN MODAL -->
                             <div class="modal fade" id="modal{{$part->id}}" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" style="display: none;">
@@ -229,11 +242,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Modal Add Category -->
+                            <!-- END MODAL -->
+                        </div>
                         @endforeach
-
-
             </div>
         </div>
     </div>

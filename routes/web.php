@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::get('/parts/edit/get_by_group', 'Cars\PartsController@get_by_group')->name('get_by_group');
    // Route::get('/complects/parts/{complect}/edit', 'Cars\ComplectsController@editparts')->name('complect.editparts');
     Route::put('/complects/parts/{complect}/{part}', 'Cars\ComplectsController@updateparts')->name('complect.updateparts');
-    Route::delete('/complects/parts/{part}/delete', 'Cars\ComplectsController@updateparts')->name('complect.deleteparts');
+    Route::delete('/complects/parts/{complect}/{part}/delete', 'Cars\ComplectsController@detachparts')->name('complect.deleteparts');
 
 //blog part
     Route::resource('/categories', 'CategoriesController');

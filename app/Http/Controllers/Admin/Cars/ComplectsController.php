@@ -201,5 +201,17 @@ class ComplectsController extends Controller
 
         return redirect(route('complects.edit', $complect->id));
     }
+
+    /**
+     * Remove the pivot rows from pivot table.
+     *
+     * @param  \App\Models\Complect $complect
+     * @return \Illuminate\Http\Response
+     */
+    public function detachparts(Complect $complect, $ids)
+    {
+        $complect->parts()->detach($ids);
+        return redirect(route('complects.edit', $complect->id));
+    }
 }
 
