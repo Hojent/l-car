@@ -191,7 +191,7 @@
                         @foreach($complect->parts as $part)
                         <div class="row">
                             <div class="col-sm-1">
-                                <input type="checkbox" name="checkparts[]" value="{{$part->id}}" form="deleteall"/>
+                                <input type="checkbox" class="check_" name="checkparts[]" value="{{$part->id}}" form="deleteall"/>
                             </div>
                             <div class="col-sm-8">
                            {{$part->title}} - {{$part->pivot->price}}$
@@ -303,10 +303,14 @@
         });
     </script>
             <script>
-                $('checkall').checkbox(function () {
-                        alert('ccccccc');
+                $('#checkall').on('change', function(){
+                    if ($('#checkall').prop('checked')) {
+                          $('.check_').prop( 'checked' , true );
                     }
-                );
+                    else {
+                        $(".check_").removeProp('checked');
+                    }
+                });
             </script>
 @endsection
 <!-- ============================================================== -->
