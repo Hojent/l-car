@@ -143,7 +143,7 @@
 
         <div class="row">
                 <div class="card card-body col-sm-12">
-                    <h3>Добавить запчасть</h3>
+                    <h3>Добавить запчасть:  <input type="checkbox" id="checkallfull" value=""> - выбрать все</h3>
                   @foreach ($groups as $group)
                      <div><h4>{{$group->group}}</h4></div>
                      <div class="row  flex-wrap">
@@ -152,7 +152,7 @@
                           @if ($loop->index == 0 OR $loop->index%5 == 0)
                               <div class="col-sm-4 flex-column">
                           @endif
-                             <input type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}}<br>
+                             <input class="checkfull_" type="checkbox" name="parts[]" value="{{$part->id}}" /> {{$part->title}}<br>
                           @if ($loop->iteration%5 == 0 OR $loop->last)
                             </div>
                           @endif
@@ -311,6 +311,15 @@
                         $(".check_").removeProp('checked');
                     }
                 });
+                $('#checkallfull').on('change', function(){
+                    if ($('#checkallfull').prop('checked')) {
+                        $('.checkfull_').prop( 'checked' , true );
+                    }
+                    else {
+                        $(".checkfull_").removeProp('checked');
+                    }
+                });
+
             </script>
 @endsection
 <!-- ============================================================== -->
