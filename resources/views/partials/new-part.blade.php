@@ -33,6 +33,7 @@
                                 $groups, null,
                                 ['placeholder' => 'Выберите категорию',
                                 'class' => 'select2 form-control custom-select',
+                                'required' => 'required',
                                 'style' => 'width: 100%; height:36px;']
                                 )
                             }}
