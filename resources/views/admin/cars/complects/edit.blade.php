@@ -145,9 +145,8 @@
                 <div class="card card-body col-sm-12">
                     <h3>Добавить запчасть:  <input type="checkbox" id="checkallfull" value=""> - выбрать все</h3>
                   @foreach ($groups as $group)
-                     <div><h4>{{$group->group}}</h4></div>
-                     <div class="row  flex-wrap">
-
+                        <div class="has-arrow"><a class="sidebar-link has-arrow" data-toggle="collapse" data-target="#group{{$group->id}}" href="#" ><h4>{{$group->group}}</h4></a></div>
+                     <div class="row  flex-wrap collapse  first-level" id="group{{$group->id}}">
                      @foreach($parts->where('group_id', $group->id) as $part)
                           @if ($loop->index == 0 OR $loop->index%5 == 0)
                               <div class="col-sm-4 flex-column">
