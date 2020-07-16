@@ -210,6 +210,7 @@ class ComplectsController extends Controller
      */
     public function detachparts(Complect $complect, $id)
     {
+        $complect->removePivotImage($id);
         $complect->parts()->detach($id);
         return redirect(route('complects.edit', $complect->id));
     }

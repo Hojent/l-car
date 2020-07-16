@@ -333,10 +333,11 @@ class Complect extends BaseModel
 
     }
 
-    public function removePivotImage()
+    public function removePivotImage($id)
     {
-        if ($this->image != null) {
-            Storage::delete('/uploads/cars/' . $this->parts()->pivot->image);
+        $image = $this->parts()->where('part_id', $id)->first()->pivot->image;
+        if ($image != null) {
+            Storage::delete('/uploads/cars/' . $image);
         }
     }
 
