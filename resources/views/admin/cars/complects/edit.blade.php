@@ -176,20 +176,36 @@
             <div class="card card-body">
                 <div class="form-group">
                       <h3>Перечень запчастей</h3>
+                    <div class="row font-weight-bold">
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="checkall" value="" id="checkall"/>
+                        </div>
+                        <div class="col-sm-8">название</div>
+                        <div class="col-sm-2">
+                            Фото
+                        </div>
+                        <div class="col-sm-1">
 
+                        </div>
+                    </div>
                         @foreach($complect->parts as $part)
                         <div class="row">
+                            <div class="col-sm-1">
+                                <input type="checkbox" name="checkparts[]" value="{{$part->id}}" form="deleteall"/>
+                            </div>
                             <div class="col-sm-8">
-                            @if ($part->pivot->image)
-                              <img src="/assets/images/custom-select.png" />
-                           @endif
                            {{$part->title}} - {{$part->pivot->price}}$
                             <a href="#" title="изменить" style="color: green;" data-toggle="modal" data-target="#modal{{$part->id}}">
                                 <span class="mdi mdi-pencil"></span></a>
                             </div>
                             <div class="col-sm-2">
+                                @if ($part->pivot->image)
+                                    <span class="mdi mdi-car"></span>
+                                @endif
+                            </div>
+                            <div class="col-sm-1">
                             {{Form::open([
-                                            'route'=>['complect.deleteparts',
+                                            'route'=>['complect.deletepart',
                                                 $complect->id, $part->id],
                                              'method'=>'delete'
                                              ])}}
@@ -245,6 +261,16 @@
                             <!-- END MODAL -->
                         </div>
                         @endforeach
+
+                    {{Form::open(['route'=>['complect.deleteparts', $complect->id],
+                                    'method'=>'delete',
+                                    'id' => 'deleteall'
+                                  ])}}
+                    <button class="btn btn-danger" title="" onclick="return confirm('удалить выбранные?')" type="submit">
+                        @lang('messages.delete')
+                    </button>
+                    {{Form::close()}}
+
             </div>
         </div>
     </div>
@@ -276,6 +302,12 @@
             });
         });
     </script>
+            <script>
+                $('checkall').checkbox(function () {
+                        alert('ccccccc');
+                    }
+                );
+            </script>
 @endsection
 <!-- ============================================================== -->
 <!-- End PAge Content -->

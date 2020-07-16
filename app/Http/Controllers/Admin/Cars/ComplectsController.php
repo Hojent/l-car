@@ -208,10 +208,27 @@ class ComplectsController extends Controller
      * @param  \App\Models\Complect $complect
      * @return \Illuminate\Http\Response
      */
-    public function detachparts(Complect $complect, $ids)
+    public function detachparts(Complect $complect, $id)
     {
+        $complect->parts()->detach($id);
+        return redirect(route('complects.edit', $complect->id));
+    }
+
+    /**
+     * Remove the pivot rows from pivot table.
+     *
+     * @param  \App\Models\Complect $complect
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteChekedParts(Complect $complect, Request $request)
+    {
+        $ids=[];
+        $ids = $request->get('checkparts');
+        //dd($request);
+        //$ids = [10, 11];
         $complect->parts()->detach($ids);
         return redirect(route('complects.edit', $complect->id));
     }
+
 }
 
