@@ -160,7 +160,7 @@ class ComplectsController extends Controller
      */
     public function destroy(Complect $complect)
     {
-        $complect->delete();
+        $complect->remove();
         return redirect(route('complects.index'));
     }
 
