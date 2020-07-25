@@ -16,7 +16,7 @@
                     <li class="d-flex no-block card-body border-top">
                         <i class="fa fa-check-circle w-30px m-t-5"></i>
                         <div>
-                            <a href="{{route('groups.edit',$group->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_group')">{{$group->group}}</a>
+                            <a href="{{route('groups.edit',$group->id)}}" class="m-b-0 font-medium p-0" title="@lang('headers.edit_group')">{{$group->group}} ({{$group->parts->count()}}) </a>
                         </div>
                         <div class="ml-auto">
                             {{Form::open(['route'=>['groups.destroy', $group->id], 'method'=>'delete'])}}
