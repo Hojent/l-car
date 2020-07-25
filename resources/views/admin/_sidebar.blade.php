@@ -11,7 +11,8 @@
          @endforeach
      </ul>
     </li>
-    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu">Запчасти</span></a></li>
+    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('parts.index')}}" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu">Запчасти</span></a></li>
+
     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-blogger"></i><span class="hide-menu">Блог</span></a>
         <ul aria-expanded="false" class="collapse  first-level">
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('posts.index')}}" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Все материалы</span></a></li>
@@ -29,7 +30,6 @@
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('volumes.index')}}" aria-expanded="false"><i class="mdi mdi-engine"></i><span class="hide-menu">Объемы двгателей</span></a></li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('years.index')}}" aria-expanded="false"><i class="mdi mdi-yelp"></i><span class="hide-menu">Годы выпуска</span></a></li>
              <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('groups.index')}}" aria-expanded="false"><i class="mdi mdi-yeast"></i><span class="hide-menu">Категории запчастей</span></a></li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('parts.index')}}" aria-expanded="false"><i class="mdi mdi-car"></i><span class="hide-menu">Запчасти - названия</span></a></li>
         </ul>
     </li>
     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chemical-weapon"></i><span class="hide-menu">Марки автомобилей</span></a>

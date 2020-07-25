@@ -10,8 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $lastcar = Complect::where('updated_at', Complect::max('updated_at'))->orderBy('updated_at','desc')->first();
-
-        return view('admin.dashboard' , compact('lastcar'));
+        $lastcars = Complect::orderBy('updated_at','desc')->take(3)->get();
+        return view('admin.dashboard' , compact('lastcars'));
     }
 }

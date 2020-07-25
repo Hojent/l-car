@@ -60,6 +60,7 @@
                                 <thead>
                                 <tr>
                                     <th>Название</th>
+                                    <th>Общее кол-во</th>
                                     <th>Категория</th>
                                     <th title="Действие">Действие</th>
                                 </tr>
@@ -69,6 +70,7 @@
                                     <tr>
                                         <td>
                                             <a href="{{route('parts.edit',$part->id)}}" class="m-b-0 font-medium p-0" title="@lang('message.edit')">{{$part->title}}</a></td>
+                                        <td>{{$part->complects->count()}}</td>
                                         <td>{{$part->getGroup()}}</td>
                                         <td>
                                             {{Form::open([
