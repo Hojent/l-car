@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <!-- linked fields  -->
                 <!--brand ID -->
                 <div class="box">
@@ -121,13 +121,8 @@
                 </div>
 
             </div>
-            <!--description  -->
-            <div class="col-sm-5">
-                <textarea class="form-control" id="description" name="description">
-                    {!! $complect->description !!}
-                </textarea>
-            </div>
-            <div class="col=sm-4">
+
+            <div class="col=sm-6">
                 <div class="box">
                     <label for="color">Цвет</label>
                     <input type="text" name="color" class="form-control" id="color" value="{{ $complect->color }}">
@@ -143,6 +138,9 @@
 
         <div class="row">
                 <div class="card card-body col-sm-12">
+                     <textarea class="form-control" id="description" name="description">
+                    {!! $complect->description !!}
+                </textarea>
                     <h3>Добавить запчасть:  <input type="checkbox" id="checkallfull" value=""> - выбрать все</h3>
                   @foreach ($groups as $group)
                         <div class="has-arrow"><a class="sidebar-link has-arrow" data-toggle="collapse" data-target="#group{{$group->id}}" href="#" ><h4>{{$group->group}}</h4></a></div>
