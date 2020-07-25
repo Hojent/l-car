@@ -34,7 +34,7 @@
                                             @lang('messages.tags'): <span class="small">{{$post->getTags()}}</span>
                                         </td>
                                         <td>{{$post->getCategory()}}</td>
-                                        <td><img width="100%" src="{{$post->getImage()}}"></td>
+                                        <td><img width="200px" src="{{$post->getImage()}}"></td>
                                         <td>{{$post->created_at}}</td>
                                         <td>
                                         @if ($post->isStatus($post->status))
