@@ -117,7 +117,7 @@
             </div>
                       <!--description  -->
             <div class="col-sm-6">
-                <textarea class="form-control" id="description" name="description" value="{{old('description')}}">Разместите здесь краткое описание машины. Это может быть любой текст. Какие-то особенности, откуда прибыла машина, ее общее состояние, нюансы кузова, и т.д.
+                <textarea class="form-control" id="description" name="description" value="{{old('description')}}">
                 </textarea>
             </div>
             <div class="col=sm-3">

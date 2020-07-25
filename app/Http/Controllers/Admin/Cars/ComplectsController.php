@@ -160,6 +160,7 @@ class ComplectsController extends Controller
      */
     public function destroy(Complect $complect)
     {
+        $complect->parts()->detach();
         $complect->remove();
         return redirect(route('complects.index'));
     }
@@ -229,7 +230,6 @@ class ComplectsController extends Controller
         //$ids = [10, 11];
         $complect->removePivotImages($ids);
         $complect->parts()->detach($ids);
-
         return redirect(route('complects.edit', $complect->id));
     }
 
