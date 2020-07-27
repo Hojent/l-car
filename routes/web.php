@@ -36,8 +36,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/complects', 'Cars\ComplectsController');
     Route::get('/brand/{brand_id}', 'Cars\ComplectsController@index')->name('complect.brand');
     Route::get('/models/edit/get_by_brand', 'Cars\ModelsController@get_by_brand')->name('get_by_brand');
-    Route::get('/parts/edit/get_by_group', 'Cars\PartsController@get_by_group')->name('get_by_group');
-   // Route::get('/complects/parts/{complect}/edit', 'Cars\ComplectsController@editparts')->name('complect.editparts');
+    Route::get('/parts/{id}/get_by_group', 'Cars\PartsController@get_by_group')->name('get_by_group');
+    Route::get('/groups/{id}/parts',  'Cars\PartsController@getgroup')->name('groups.parts');
     Route::put('/complects/parts/{complect}/{part}', 'Cars\ComplectsController@updateparts')
            ->name('complect.updateparts');
     Route::delete('/complects/parts/{complect}/{part}/delete', 'Cars\ComplectsController@detachparts')

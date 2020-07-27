@@ -58,41 +58,22 @@
             </div>
             <ul class="list-style-none">
                 <!-- parts links -->
+                @foreach($groups as $group)
                 <li class="d-flex no-block card-body border-top">
                     <i class="fa fa-check-circle w-30px m-t-5"></i>
                     <div>
-                        <a href="#" class="m-b-0 font-medium p-0">Двигатели и зч по двигателям</a>
+                        <a  href="{{route('groups.parts', $group->id)}}" class="m-b-0 font-medium p-0">{{$group->group}}</a>
                     </div>
                     <div class="ml-auto">
                         <div class="tetx-right">
-                            <h5 class="text-muted m-b-0">(6)</h5>
-                        </div>
-                    </div>
-                </li>
-                <li class="d-flex no-block card-body border-top">
-                    <i class="fa fa-check-circle w-30px m-t-5"></i>
-                    <div>
-                        <a href="#" class="m-b-0 font-medium p-0">Подвеска</a>
-                    </div>
-                    <div class="ml-auto">
-                        <div class="tetx-right">
-                            <h5 class="text-muted m-b-0">(12)</h5>
-                        </div>
-                    </div>
-                </li>
-                <li class="d-flex no-block card-body border-top">
-                    <i class="fa fa-check-circle w-30px m-t-5"></i>
-                    <div>
-                        <a href="#" class="m-b-0 font-medium p-0">Электрика</a>
-                    </div>
-                    <div class="ml-auto">
-                        <div class="tetx-right">
-                            <h5 class="text-muted m-b-0">(19)</h5>
+                            <h5 class="text-muted m-b-0">({{$group->parts->count()}})</h5>
                         </div>
                     </div>
                 </li>
                 <!-- end parts links -->
+                @endforeach
             </ul>
+            <a href="{{route('parts.index')}}" class="btn btn-primary btn-sm box"> Показать все</a>
         </div>
     </div>
 </div>

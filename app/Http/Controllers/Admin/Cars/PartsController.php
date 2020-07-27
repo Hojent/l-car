@@ -117,4 +117,27 @@ class PartsController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+    /**
+     * Creats Parts list by Group ID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getgroup($groupId = 0)
+    {
+        $parts = Part::with(['group']);
+        if ($groupId != 0) {
+            $parts = $parts->where('group_id', $groupId);
+        }
+        $groups = Group::pluck('group', 'id');
+        $parts = $parts->get();
+        return view('admin.cars.parts.index', [
+            'parts' => $parts,
+            'gid' => false,
+            'groups' => $groups
+
+        ]);
+    }
 }

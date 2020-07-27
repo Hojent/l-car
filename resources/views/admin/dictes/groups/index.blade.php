@@ -35,7 +35,7 @@
                 @lang('headers.add_group')
             </button>
             <div class="card-body">
-                <div class="alert alert-info">Чтобы изменить год, кликнете по названию</div>
+                <div class="alert alert-info">Чтобы изменить, кликнете по названию</div>
             </div>
         </div>
     </div>
