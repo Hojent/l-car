@@ -8,46 +8,94 @@
             <div class="row no-gutters slider-text justify-content-start align-items-center">
                 <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
                     <div class="text">
-                        <h1 class="mb-4">Now <span>It's easy for you</span> <span>rent a car</span></h1>
-                        <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
+                        <h1 class="mb-4">Автозапчасти<span>из Европы</span></h1>
+                        <p style="font-size: 18px;">Бэушка с европейских авторазборок. Демонстрационный сайт.</p>
                         <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="ion-ios-play"></span>
                             </div>
                             <div class="heading-title ml-5">
-                                <span>Easy steps for renting a car</span>
+                                <span>здесь будет ваше видео</span>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-2 col"></div>
                 <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
-                    <form action="#" class="request-form ftco-animate">
-                        <h2>Make your trip</h2>
+                    <form action="#" class="request-form ftco-animate" id="searchform">
+                        <h2>Поиск модели</h2>
                         <div class="form-group">
-                            <label for="" class="label">Pick-up location</label>
-                            <input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+                            <label for="brand" class="label">Марка</label>
+
+                                <div class="select2-selection__arrow">
+                                    {{Form::select('brand_id',
+                                        $brands, null,
+                                        ['placeholder' => 'Выберите марку',
+                                        'class' => 'select2 form-control custom-select',
+                                        'style' => 'width: 100%; height:36px;',
+                                        'id' => 'brand',
+                                        ])
+                                    }}
+                                </div>
+                        </div>
+                        <div class="box {{ $errors->has('model_id') ? 'has-error' : '' }}">
+                            <select name="model_id" id="model" class="select2 form-control custom-select" style = "width: 100%; height:36px;">
+                                <option value="">Модель</option>
+                            </select>
+                            @if($errors->has('model_id'))
+                                <p class="help-block">
+                                    {{ $errors->first('model_id') }}
+                                </p>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="" class="label">Drop-off location</label>
-                            <input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+                            <label for="year" class="label">Год выпуска</label>
+                                <div class="select2-selection__arrow">
+                                    {{Form::select('year_id',
+                                     $years, null,
+                                     ['placeholder' => 'Выберите год',
+                                     'class' => 'select2 form-control custom-select',
+                                     'style' => 'width: 100%; height:36px;']
+                                     )
+                                 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="body" class="label">Кузов</label>
+                            <div class="select2-selection__arrow">
+                                {{Form::select('body_id',
+                                      $bodies, null,
+                                      ['placeholder' => 'Выберите кузов',
+                                      'class' => 'select2 form-control custom-select',
+                                      'style' => 'width: 100%; height:36px;']
+                                      )
+                                  }}
+                            </div>
                         </div>
                         <div class="d-flex">
                             <div class="form-group mr-2">
-                                <label for="" class="label">Pick-up date</label>
-                                <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
+                                <label for="motor" class="label">Двигатель</label>
+                                {{Form::select('motor_id',
+                                   $motors, null,
+                                   ['placeholder' => 'Выберите тип',
+                                   'class' => 'select2 form-control custom-select',
+                                   'style' => 'width: 100%; height:36px;']
+                                   )
+                               }}
                             </div>
                             <div class="form-group ml-2">
-                                <label for="" class="label">Drop-off date</label>
-                                <input type="text" class="form-control" id="book_off_date" placeholder="Date">
+                                <label for="volume" class="label">Объем</label>
+                                {{Form::select('volume_id',
+                                   $volumes, null,
+                                   ['placeholder' => 'Объем, см3',
+                                   'class' => 'select2 form-control custom-select',
+                                   'style' => 'width: 100%; height:36px;']
+                                   )
+                               }}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="label">Pick-up time</label>
-                            <input type="text" class="form-control" id="time_pick" placeholder="Time">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Search Vehicle" class="btn btn-primary py-3 px-4">
+                            <input type="submit" value="Искать" class="btn btn-primary py-3 px-4">
                         </div>
                     </form>
                 </div>
@@ -64,89 +112,35 @@
                             <div class="row">
                                 <div class="col-lg align-items-end">
                                     <div class="form-group">
-                                        <label for="#">Select Model</label>
+                                        <label for="#">Категория запчастей</label>
                                         <div class="form-field">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Select Model</option>
-                                                    <option value="">Model 1</option>
-                                                    <option value="">Model 2</option>
-                                                    <option value="">Model 3</option>
-                                                    <option value="">Model 4</option>
-                                                    <option value="">Model 5</option>
-                                                    <option value="">Model 6</option>
-                                                    <option value="">Model 7</option>
-                                                    <option value="">Model 8</option>
-                                                    <option value="">Model 9</option>
-                                                    <option value="">Model 10</option>
-                                                </select>
+                                                {{Form::select('group_id',
+                                                   $groups, null,
+                                                   ['placeholder' => 'Выберите категорию',
+                                                   'class' => 'select2 form-control custom-select',
+                                                   'style' => 'width: 100%; height:36px;']
+                                                   )
+                                               }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg align-items-end">
                                     <div class="form-group">
-                                        <label for="#">Select Brand</label>
+                                        <label for="#">Выберите марку</label>
                                         <div class="form-field">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Select Brand</option>
-                                                    <option value="">Brand 1</option>
-                                                    <option value="">Brand 2</option>
-                                                    <option value="">Brand 3</option>
-                                                    <option value="">Brand 4</option>
-                                                    <option value="">Brand 5</option>
-                                                    <option value="">Brand 6</option>
-                                                    <option value="">Brand 7</option>
-                                                    <option value="">Brand 8</option>
-                                                    <option value="">Brand 9</option>
-                                                    <option value="">Brand 10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg align-items-end">
-                                    <div class="form-group">
-                                        <label for="#">Year Model</label>
-                                        <div class="form-field">
-                                            <div class="select-wrap">
-                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Year Model</option>
-                                                    <option value="">2019</option>
-                                                    <option value="">2018</option>
-                                                    <option value="">2017</option>
-                                                    <option value="">2016</option>
-                                                    <option value="">2015</option>
-                                                    <option value="">2014</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg align-items-end">
-                                    <div class="form-group">
-                                        <label for="#">Price Limit</label>
-                                        <div class="form-field">
-                                            <div class="select-wrap">
-                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">$1</option>
-                                                    <option value="">$50</option>
-                                                    <option value="">$100</option>
-                                                    <option value="">$200</option>
-                                                    <option value="">$300</option>
-                                                    <option value="">$400</option>
-                                                    <option value="">$500</option>
-                                                    <option value="">$600</option>
-                                                    <option value="">$700</option>
-                                                    <option value="">$800</option>
-                                                    <option value="">$900</option>
-                                                    <option value="">$1000</option>
-                                                </select>
+                                                {{Form::select('brand_id',
+                                                 $brands, null,
+                                                 ['placeholder' => 'Выберите марку',
+                                                 'class' => 'select2 form-control custom-select',
+                                                 'style' => 'width: 100%; height:36px;',
+                                                 'id' => 'brand',
+                                                 ])
+                                             }}
                                             </div>
                                         </div>
                                     </div>
@@ -170,8 +164,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                    <span class="subheading">Our Services</span>
-                    <h2 class="mb-2">Our Services</h2>
+                    <span class="subheading">мы предлагаем</span>
+                    <h2 class="mb-2">Наши услуги</h2>
                 </div>
             </div>
             <div class="row d-flex">
@@ -180,7 +174,7 @@
                         <div class="media-body py-md-4">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="icon"><span class="flaticon-customer-support"></span></div>
-                                <h3 class="heading mb-0 pl-3">24/7 Car Support</h3>
+                                <h3 class="heading mb-0 pl-3">Мелкий ремон</h3>
                             </div>
                             <p>A small river named Duden flows by their place and supplies it with you</p>
                         </div>
@@ -191,7 +185,7 @@
                         <div class="media-body py-md-4">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="icon"><span class="flaticon-route"></span></div>
-                                <h3 class="heading mb-0 pl-3">Lots of location</h3>
+                                <h3 class="heading mb-0 pl-3">Доставка</h3>
                             </div>
                             <p>A small river named Duden flows by their place and supplies it with you</p>
                         </div>
@@ -202,7 +196,7 @@
                         <div class="media-body py-md-4">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="icon"><span class="flaticon-online-booking"></span></div>
-                                <h3 class="heading mb-0 pl-3">Reservation</h3>
+                                <h3 class="heading mb-0 pl-3">Заказ и бронь</h3>
                             </div>
                             <p>A small river named Duden flows by their place and supplies it with you</p>
                         </div>
@@ -213,7 +207,7 @@
                         <div class="media-body py-md-4">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="icon"><span class="flaticon-rent"></span></div>
-                                <h3 class="heading mb-0 pl-3">Rental Cars</h3>
+                                <h3 class="heading mb-0 pl-3">Прокат авто</h3>
                             </div>
                             <p>A small river named Duden flows by their place and supplies it with you</p>
                         </div>
@@ -227,8 +221,8 @@
         <div class="container-fluid px-4">
             <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                    <span class="subheading">What we offer</span>
-                    <h2 class="mb-2">Choose Your Car</h2>
+                    <span class="subheading">автомобили в разборке</span>
+                    <h2 class="mb-2">Найди своего донора</h2>
                 </div>
             </div>
             <div class="row">
@@ -461,4 +455,17 @@
             {{$posts->links()}}
         </div>
     </section>
+@endsection
+@section ('script')
+    <script type="text/javascript">
+        $('#brand').change(function(){
+            $.ajax({
+                url: "{{ route('get_by_brand') }}?brand_id=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    $('#model').html(data.html);
+                }
+            });
+        });
+    </script>
 @endsection

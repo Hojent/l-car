@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Models\Brand;
+use App\Models\Model as CarModel;
+use App\Models\Dictes\Motor;
+use App\Models\Dictes\Year;
+use App\Models\Dictes\Volume;
+use App\Models\Dictes\Body;
+use App\Models\Dictes\Group;
 
 class HomeController extends Controller
 {
@@ -20,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $brands = Brand::pluck('title', 'id');
+        $years = Year::pluck('year', 'id');
+        $motors = Motor::pluck('motor', 'id');
+        $bodies = Body::pluck('body', 'id');
+        $volumes = Volume::pluck('title', 'id');
+        $groups = Group::pluck('group', 'id');
         $posts = Post::where([
             ['is_featured', '=', 1],
             ['status', '=', 1],
@@ -29,6 +42,12 @@ class HomeController extends Controller
             ->paginate(3);
         return view('blog.home', [
             'posts' => $posts,
+            'brands' => $brands,
+            'years' => $years,
+            'bodies' => $bodies,
+            'motors' => $motors,
+            'volumes' => $volumes,
+            'groups' => $groups
         ]);
     }
 }
