@@ -32,10 +32,17 @@ class ComplectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+
     {
+        $car = Complect::where('id', $id)->firstOrFail();
+        //$brands = Brand::all();
+        //$parts = Part::all();
+        $brand = $car->getBrand();
         return view('cars.detail', [
-            'id' => $id
+            'car' => $car,
+            'brand' => $brand,
         ]);
+
     }
 
 }
