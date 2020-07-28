@@ -14,7 +14,8 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article');
 //-----
 //Cars Service
 Route::group(['prefix' => 'cars', 'namespace' => 'Cars'], function () {
-    Route::get('/', 'ComplectsController@index')->name('complects');
+    Route::get('/', 'ComplectsController@index')->name('cars');
+    Route::get('/{id}/', 'ComplectsController@show')->name('car');
 });
 //-----------
 
@@ -49,7 +50,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' =>'auth'
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');
     Route::resource('/tags', 'TagsController');
-    //Route::resource('/profile', 'ProfileController' );
     Route::get('/category/{id}', 'PostsController@category')->name('category');
 //user profile part
     Route::get('/profile', 'ProfileController@index')->name('profile.index');

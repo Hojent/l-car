@@ -225,153 +225,35 @@
                     <h2 class="mb-2">Найди своего донора</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="row flex-row">
+               @foreach($cars as $car)
+                <div class="flex-wrap col-md-3">
                     <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(/images/car-1.jpg);">
+                        <div class="img d-flex align-items-end" style="background-image: url({{$car->getImage()}});">
                             <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
+                                <span class="rate">{{$car->getYear()}}</span>
                                 <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
+                                   @if ($car->motor_id == 0)
+                                    <span></span>
+                                   @else
+                                        <span>{{$car->getMotor()}}</span>
+                                        <span>{{$car->getVolume()}} cm3</span>
+                                   @endif
                                 </p>
                             </div>
                         </div>
                         <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Audi</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
+                            <h2 class="mb-0"><a href="#">{{$car->getBrand()}}, {{$car->getModel()}}</a></h2>
+                            <span>{{$car->title}}</span>
+                            <p class="d-flex mb-0 d-block">
+                                <a href="tel:+375293469941" class="btn btn-black btn-outline-black mr-1">
+                                    <i class="icon icon-phone"></i></a>
+                                <a href="{{route('car', $car->id)}}" class="btn btn-black btn-outline-black ml-1">Запчасти</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-2.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Ford</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-3.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Cheverolet</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end"
-                             style="background-image: url(/images/car-4.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Mercedes</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-5.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Audi</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-6.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Ford</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-7.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Cheverolet</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="car-wrap ftco-animate">
-                        <div class="img d-flex align-items-end" style="background-image: url(images/car-8.jpg);">
-                            <div class="price-wrap d-flex">
-                                <span class="rate">$25</span>
-                                <p class="from-day">
-                                    <span>From</span>
-                                    <span>/Day</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text p-4 text-center">
-                            <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                            <span>Mercedes</span>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
+               @endforeach
             </div>
         </div>
     </section>
