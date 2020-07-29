@@ -22,7 +22,12 @@
                 </div>
                 <div class="col-lg-2 col"></div>
                 <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
-                    <form action="#" class="request-form ftco-animate" id="searchform">
+                        {{ Form::open([
+                            'route' => ['cars'],
+                            'method' => 'GET',
+                            'class' => 'request-form ftco-animate',
+                            'id' => 'searchform'
+                             ]) }}
                         <h2>Поиск модели</h2>
                         <div class="form-group">
                             <label for="brand" class="label">Марка</label>
@@ -97,7 +102,7 @@
                         <div class="form-group">
                             <input type="submit" value="Искать" class="btn btn-primary py-3 px-4">
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -108,7 +113,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="search-wrap-1 ftco-animate mb-5">
-                        <form action="#" class="search-property-1">
+                        <form action="{{route('cars')}}" class="search-property-1">
                             <div class="row">
                                 <div class="col-lg align-items-end">
                                     <div class="form-group">
@@ -138,7 +143,7 @@
                                                  ['placeholder' => 'Выберите марку',
                                                  'class' => 'select2 form-control custom-select',
                                                  'style' => 'width: 100%; height:36px;',
-                                                 'id' => 'brand',
+                                                 'id' => 'brand2',
                                                  ])
                                              }}
                                             </div>
@@ -342,7 +347,7 @@
     <script type="text/javascript">
         $('#brand').change(function(){
             $.ajax({
-                url: "{{ route('get_by_brand') }}?brand_id=" + $(this).val(),
+                url: "{{ route('get_by_brand_home') }}?brand_id=" + $(this).val(),
                 method: 'GET',
                 success: function(data) {
                     $('#model').html(data.html);

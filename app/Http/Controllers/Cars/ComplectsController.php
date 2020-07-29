@@ -5,6 +5,14 @@ namespace App\Http\Controllers\Cars;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Complect;
+use App\Models\Brand;
+use App\Models\Model as CarModel;
+use App\Models\Dictes\Motor;
+use App\Models\Dictes\Year;
+use App\Models\Dictes\Volume;
+use App\Models\Dictes\Body;
+use App\Models\Dictes\Group;
+use App\Filters\ComplectsFilter;
 
 class ComplectsController extends Controller
 {
@@ -13,16 +21,30 @@ class ComplectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, ComplectsFilter $filters)
     {
+        $brands = Brand::pluck('title', 'id');
+        $years = Year::pluck('year', 'id');
+        $motors = Motor::pluck('motor', 'id');
+        $bodies = Body::pluck('body', 'id');
+        $volumes = Volume::pluck('title', 'id');
+        $groups = Group::pluck('group', 'id');
+
         $cars = Complect::with(['brand', 'model', 'volume', 'motor', 'body', 'year'])
-            ->where('status', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+            ->where('status', 1)->filter($filters)
+            ->get();
+
 
         return view('cars.index', [
-            'cars' => $cars
+            'cars' => $cars,
+            'brands' => $brands,
+            'years' => $years,
+            'bodies' => $bodies,
+            'motors' => $motors,
+            'volumes' => $volumes,
+            'groups' => $groups,
         ]);
+
     }
 
      /**
@@ -43,6 +65,11 @@ class ComplectsController extends Controller
             'brand' => $brand,
         ]);
 
+    }
+
+    public function searchCar()
+    {
+        //
     }
 
 }

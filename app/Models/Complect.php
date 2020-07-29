@@ -344,4 +344,14 @@ class Complect extends BaseModel
             }
     }
 
+    //filters
+
+    /**
+     *Query constraint
+     */
+    public function scopeFilter($builder, $filters)
+    {
+        return $filters->apply($builder);
+    }
+
 }

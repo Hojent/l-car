@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/send-email', 'FeedbackController@send')->name('send');
+Route::get('/get_by_brand', 'HomeController@get_by_brand')->name('get_by_brand_home');
 //Route::get('/send-email', 'FeedbackController@send')->name('sent');
 //Route::get('models/get_by_brand', 'ModelsController@get_by_brand')->name('get_by_brand');
 
@@ -16,6 +17,7 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article');
 Route::group(['prefix' => 'cars', 'namespace' => 'Cars'], function () {
     Route::get('/', 'ComplectsController@index')->name('cars');
     Route::get('/{id}/', 'ComplectsController@show')->name('car');
+
 });
 //-----------
 
